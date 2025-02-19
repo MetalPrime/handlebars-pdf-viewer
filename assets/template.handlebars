@@ -1,7 +1,218 @@
-<h2>{{title}}</h2>
-<p>{{description}}</p>
-<ul>
-    {{#each items}}
-        <li>{{this}}</li>
-    {{/each}}
-</ul>
+<html>
+<style>
+    body {
+        font-family: 'Barlow', sans-serif;
+        font-size: 14px;
+        color: #333;
+    }
+
+    h1 {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .page {
+        display: block;
+        padding-top: 2px;
+        padding-right: 5rem;
+        padding-left: 5rem;
+    }
+
+    .full-page-height {
+        height: 976px;
+    }
+
+    .first-page {
+        height: 100%;
+        text-align: center;
+        background-image: url('/assets/background-first.png');
+        background-size: cover;
+
+    }
+
+    .page-background {
+        background-image: url('/assets/background.png');
+        background-size: cover;
+    }
+
+    span.section {}
+
+    span.section>.title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #173F6F;
+    }
+
+    span.section>.subtitle{
+        font-size: 12px;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Generated Report</title>
+</head>
+
+<body>
+    <span class="page full-page-height first-page">
+        <span class="header">
+            <span class="header-left">
+                <span class="header-logo">
+                    <img src="/assets/AICCRA-logo.png" width="25%" />
+                </span>
+            </span>
+            <span class="header-right">
+                <span class="header-title">
+                    <h1>Generated Report</h1>
+                    <h2>{{title}}</h2>
+                    <p>{{description}}</p>
+                    <ul>
+                        {{#each items}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                    <p>Status: {{#safeEmpty}}{{status}}{{/safeEmpty}}</p>
+                </span>
+            </span>
+        </span>
+    </span>
+
+    <span class="page page-background">
+        <span class="section">
+            <h2 class="title">Submission details</h2>
+            <span class="content">
+                <span class="field">
+                    <span class="name">OICR code: </span>{{#safeEmpty}}{{oicr_code}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Status: </span>{{#safeEmpty}}{{status}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Tag as: </span>{{#safeEmpty}}{{tag}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">AICCRA phase: </span>{{#safeEmpty}}{{aiccra_phase}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Current report year: </span>{{#safeEmpty}}{{current_report_year}}{{/safeEmpty}}
+                </span>
+            </span>
+        </span>
+
+        <br>
+
+        <span class="section">
+            <h2 class="title">General Information</h2>
+            <span class="content">
+                <span class="field">
+                    <span class="name">Cluster: </span> {{#safeEmpty}}{{cluster}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Contributing clusters: </span>
+                    {{#safeEmpty}}{{contributing_clusters}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Lead contact person: </span> {{#safeEmpty}}{{lead_contact_person}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Level of maturity of change reported: </span>
+                    {{#safeEmpty}}{{level_of_maturity}}{{/safeEmpty}}
+                </span>
+            </span>
+        </span>
+
+        <br>
+
+        <span class="section">
+            <h2 class="title">Short outcome/impact statement</h2>
+            <span class="content">
+                <span class="field">
+                    {{#safeEmpty}}{{short_outcome}}{{/safeEmpty}}
+                </span>
+            </span>
+        </span>
+
+        <br>
+
+        <span class="section">
+            <h2 class="title">Elaboration of outcome/impact statement</h2>
+            <span class="content">
+                <span class="field">
+                    {{#safeEmpty}}{{elaboration_outcome}}{{/safeEmpty}}
+                </span>
+            </span>
+        </span>
+
+        <br>
+
+        <span class="section">
+            <h2 class="title">Geographic location</h2>
+            <span class="content">
+                <span class="field">
+                    <span class="name">What is the scope? </span> {{#safeEmpty}}{{scope}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Country(ies): </span> {{#safeEmpty}}{{countries}}{{/safeEmpty}}
+                </span>
+                <span class="field">
+                    <span class="name">Region(s): </span> {{#safeEmpty}}{{regions}}{{/safeEmpty}}
+                </span>
+            </span>
+        </span>
+    </span>
+
+    <span class="page page-background">
+        <span class="section">
+            <h2 class="title">Key contributors</h2>
+            <span class="content">
+                <ul>
+                    {{#each crp}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                    {{#each institutions}}
+                    <li><b>External</b> - {{this}}</li>
+                    {{/each}}
+                </ul>
+            </span>
+        </span>
+
+        <br>
+
+        <span class="section">
+            <h2 class="title">CGIAR innovation(s) or findings that have resulted in this outcome or impact:</h2>
+            <span class="content">
+                <span class="field">
+                    {{#safeEmpty}}{{cgiarInnovation}}{{/safeEmpty}}
+                </span>
+            </span>
+        </span>
+    </span>
+
+    <span class="page page-background">
+        <span class="section">
+            <h2 class="subtitle">Innovations:</h2>
+            <span class="content">
+                <table>
+                    <tr>
+                        <th>Category</th>
+                        <th>Sub-category</th>
+                        <th>Details</th>
+                    </tr>
+                    {{#each innovations}}
+                    <tr>
+                        <td>{{category}}</td>
+                        <td>{{sub_category}}</td>
+                        <td>{{details}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </span>
+                
+    </span>
+
+</body>
+
+</html>
