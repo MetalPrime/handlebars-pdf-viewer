@@ -3,5 +3,10 @@
     "description": "This is a sample description loaded from JSON.",
     "items": ["Item 1", "Item 2", "Item 3"],
     "crp": ["CRP 1", "CRP 2", "CRP 3"],
-    "institutions": ["Institution 1", "Institution 2", "Institution 3"]
+    "institutions": ["Institution 1", "Institution 2", "Institution 3"],
+    "innovations": [{"code": "454", "title":"Sample Handlebars PDF", "link":"http://www.google.com"}, {"code": "455", "title":"Sample Handlebars PDF 2", "link":"http://www.youtube.com"}],
+    "evidence":[{"code": "454", "title":"Sample Handlebars PDF", "link":"http://www.google.com"}, {"code": "455", "title":"Sample Handlebars PDF 2", "link":"http://www.youtube.com"}],
+    "quantification": [{"type": "Type 1", "number": "1", "unit": "Unit", "comment": "Comment"}, {"type": "Type 2", "number": "2", "unit": "Unit", "comment": "Comment"}],
+    "other_cross_cutting_markers": "no",
+    "acknowledgments": [{"name": "Name 1", "position": "Position 1", "affiliation": "Affiliation 1"}, {"name": "Name 2", "position": "Position 2", "affiliation": "Affiliation 2"}]
 }
