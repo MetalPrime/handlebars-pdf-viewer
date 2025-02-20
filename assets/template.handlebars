@@ -26,13 +26,13 @@
     .first-page {
         height: 100%;
         text-align: center;
-        background-image: url('/assets/background-first.png');
+        background-image: url('https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/background-first.png');
         background-size: cover;
 
     }
 
     .page-background {
-        background-image: url('/assets/background.png');
+        background-image: url('https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/background.png');
         background-size: cover;
     }
 
@@ -41,13 +41,52 @@
     span.section>.title {
         font-size: 14px;
         font-weight: bold;
-        color: #173F6F;
+        color: #0C9999;
     }
 
     span.section>.subtitle{
         font-size: 12px;
         font-weight: bold;
         color: #333;
+    }
+
+    .table{ 
+        width: 100%; 
+        border-collapse: collapse; 
+    } 
+    .table td,.table th { 
+        border: 1px solid #a8d08d; 
+        padding: 8px; 
+        vertical-align: top; 
+    } 
+    .table tr:nth-child(even){
+        background-color: #e2efd9;
+    } 
+    .table th{ 
+        text-align: center; 
+        padding: 8px; 
+        background-color: #7ab800; 
+        color: white; 
+    } 
+
+    .table_blue{ 
+        width: 100%; 
+        border-collapse: collapse; 
+    } 
+    .table_blue td, .table_blue th { 
+        border: 1px solid #57A7B5;
+        padding: 8px; 
+        vertical-align: top; 
+    } 
+    
+    .table_blue tr:nth-child(even){
+        background-color: #CEE6EA; 
+    } 
+    .table_blue th{ 
+        text-align: center; 
+        padding: 8px; 
+        background-color:#57A7B5; 
+        color: white; 
     }
 </style>
 
@@ -61,7 +100,7 @@
         <span class="header">
             <span class="header-left">
                 <span class="header-logo">
-                    <img src="/assets/AICCRA-logo.png" width="25%" />
+                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" width="25%" />
                 </span>
             </span>
             <span class="header-right">
@@ -195,22 +234,251 @@
         <span class="section">
             <h2 class="subtitle">Innovations:</h2>
             <span class="content">
-                <table>
+                <table class="table">
                     <tr>
-                        <th>Category</th>
-                        <th>Sub-category</th>
-                        <th>Details</th>
+                        <th>Code</th>
+                        <th>Title</th>
+                        <th>PDF</th>
                     </tr>
                     {{#each innovations}}
                     <tr>
-                        <td>{{category}}</td>
-                        <td>{{sub_category}}</td>
-                        <td>{{details}}</td>
+                        <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                        <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td>
                     </tr>
                     {{/each}}
                 </table>
             </span>
-                
+        </span>
+
+        <span class="section">
+            <h2 class="title">Link to performance indicators</h2>
+            <span class="content">
+                <ul>
+                    {{#each performance_indicators}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </span>
+        </span>
+
+        <span class="section">
+            <h2 class="title">Evidence and reference</h2>
+            <span class="content">
+                <table class="table_blue">
+                    <tr>
+                        <th>Code</th>
+                        <th>Title</th>
+                        <th>PDF</th>
+                    </tr>
+                    {{#each evidence}}
+                    <tr>
+                        <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                        <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </span>
+        </span>
+
+        <span class="section">
+            <h2 class="title">Quantification</h2>
+            <span class="content">
+                <table class="table_blue">
+                    <tr>
+                        <th>Type</th>
+                        <th>Number</th>
+                        <th>Unit</th>
+                        <th>Comments</th>
+                    </tr>
+                    {{#each quantification}}
+                    <tr>
+                        <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.number}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.unit}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.comments}}{{/safeEmpty}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </span>
+        </span>
+
+        <span class="section">
+            <h2 class="title">Cross-cutting markers</h2>
+            <span class="content">
+                <table>
+                    <tr>
+                    <td>
+                        <img
+                        width='128px'
+                        height='128px'
+                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-nutrition.png'
+                        alt='Logo'
+                        />
+                    </td>
+                    <td>
+                        <img
+                        width='128px'
+                        height='128px'
+                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-gender.png'
+                        alt='Logo'
+                        />
+                    </td>
+                    <td>
+                        <img
+                        width='128px'
+                        height='128px'
+                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-proverty.png'
+                        alt='Logo'
+                        />
+                    </td>
+                    <td>
+                        <img
+                        width='128px'
+                        height='128px'
+                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-climate.png'
+                        alt='Logo'
+                        />
+                    </td>
+                    <td>
+                        <img
+                        width='128px'
+                        height='128px'
+                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-environment.png'
+                        alt='Logo'
+                        />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style='text-align: center;'><b>{{#safeEmpty
+                        }}{{nutrition_tag}}{{/safeEmpty}}</b></td>
+                    <td style='text-align: center;'><b>{{#safeEmpty
+                        }}{{gender_tag}}{{/safeEmpty}}</b></td>
+                    <td style='text-align: center;'><b>{{#safeEmpty
+                        }}{{poverty_tag}}{{/safeEmpty}}</b></td>
+                    <td style='text-align: center;'><b>{{#safeEmpty
+                        }}{{climate_tag}}{{/safeEmpty}}</b></td>
+                    <td style='text-align: center;'><b>{{#safeEmpty
+                        }}{{environmental_tag}}{{/safeEmpty}}</b></td>
+                    </tr>
+                </table>
+
+                <p style='font-size: 7px; margin-top: 16px;'>
+                    0 = Not targeted: The result did not target any of the Impact Area objectives.
+                    <br />
+                    1 = Significant: The result has made a significant contribution to any of the Impact
+                    Area objectives, even though the objective(s) is not the principal focus of the
+                    result.
+                    <br />
+                    2 = Principal: The result is principally about meeting any of the Impact Area
+                    objectives, and this is fundamental in its design and expected results. The result
+                    would not have been undertaken without this objective.
+                </p>
+            </span>
+
+            <br>
+
+            <span class="field">
+                <span class="name">Other cross-cutting markers: </span> {{#safeEmpty}}{{other_cross_cutting_markers}}{{/safeEmpty}}
+            </span>
+
+            <span class="field">
+                <span class="name">Describe any other cross-cutting dimensions: </span>
+                {{#ifEquals other_cross_cutting_markers 'yes'}}
+                    <ul>
+                        {{#each other_cross_cutting_dimensions}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+                    Not Required
+                {{/ifEquals}}
+            </span>
+        </span>
+    </span>
+
+    <span class="page">
+        <span class="section">
+            <h2 class="title">Alliance alignment</h2>
+            <h2 class="subtitle">Link to levers and strategic lever outcomes: </h2>
+            <span class="content">
+                <ul>
+                    {{#each primary_levers}}
+                    <li><b>Primary - </b>{{this}}</li>
+                    {{/each}}
+                    {{#each related_levers}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </span>
+            <h2 class="subtitle">Contribution to SDG:</h2>
+            <span class="content">
+                <table>
+                    <tr>
+                        <td width="20%">
+                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/levers.png" width="128px" />
+                        </td>
+                        <td width="80%">
+                            <ul>
+                                {{#each strategic_outcomes}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </span>
+        </span>
+
+        <span class="section">
+            <h2 class="title">One CGIAR alignment</h2>
+            <h2 class="subtitle">Link to Impact Areas and Global Targets: </h2>
+
+            <span class="content">
+                <table>
+                    <tr>
+                        <td width="20%">
+                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/levers.png" width="128px" />
+                        </td>
+                        <td width="80%">
+                            <span class="field">
+                                {{#safeEmpty}}{{impact_areas}}{{/safeEmpty}}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </span>
+        </span>
+
+        <span class="section">
+            <h2 class="title">Communications</h2>
+            <h2 class="subtitle">Communications materials relating to this outcome: </h2>
+            <span class="content">
+                <ul>
+                    {{#each communications}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </span>
+            <h2 class="subtitle">Acknowledgments:</h2>
+            <span class="content">
+                <table class="table_blue">
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Affiliation</th>
+                    </tr>
+                    {{#each acknowledgments}}
+                    <tr>
+                        <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.position}}{{/safeEmpty}}</td>
+                        <td>{{#safeEmpty}}{{this.affiliation}}{{/safeEmpty}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </span>
+        </span>
     </span>
 
 </body>
