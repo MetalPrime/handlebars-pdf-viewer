@@ -1,4 +1,8 @@
 async function generatePDF() {
+
+    //avoid reload page
+    event.preventDefault();
+
     const content = document.getElementById("content");
     if (!content) {
         console.error("Element with id 'content' not found.");
@@ -20,6 +24,8 @@ async function generatePDF() {
             },
             body: JSON.stringify(data)
         });
+
+        event.preventDefault();
 
         if (!pdfResponse.ok) {
             throw new Error('Network response was not ok');

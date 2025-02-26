@@ -1,7 +1,14 @@
 <html>
 <style>
+
+    @page:first {
+    background: url('https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/background-first.png') no-repeat center center;
+    background-size: cover;
+    margin: 0; /* Remove default margin */
+    }
+
     body {
-        font-family: 'Barlow', sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: #333;
     }
@@ -10,6 +17,31 @@
         font-size: 16px;
         color: #333;
         font-weight: bold;
+    }
+
+    hr {
+        width: 100%;
+        border: 0;
+        border-top: 2px solid #57A7B5;
+    }
+    
+    #pageHeader{
+        margin: 0;
+        width: 100%;
+        background-color: transparent;
+        position: running(pageHeader);
+    }
+
+    #pageContent{
+        overflow: visible;
+    }
+
+    #pageFooter{
+        margin: 0;
+        width: 100%;
+        background-color: transparent;
+        position: running(pageFooter);
+        bottom: 0;
     }
 
     .page {
@@ -26,17 +58,68 @@
     .first-page {
         height: 100%;
         text-align: center;
+        position: relative;
         background-image: url('https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/background-first.png');
         background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-top: -10mm; /* Compensate for header margin */
+        padding-top: 10mm; /* Add padding to maintain content position */
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
 
     }
 
-    .page-background {
-        background-image: url('https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/background.png');
-        background-size: cover;
+    .header {
+        width: 100%;
+        margin-bottom: 10px;
+        border-collapse: collapse;
+    }
+
+    .header td {
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .header h3 {
+        margin: 0;
+        text-align: left;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .header-logo {
+        text-align: right;
+    }
+
+    .header-logo img {
+        max-width: 75%;
+        height: auto;
+    }
+
+    /* Add page-specific styles */
+    .page-container {
+        position: relative;
+        min-height: 100%;
+        padding-bottom: 10mm; /* Footer height */
+    }
+
+    .img-background {
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        z-index: -1;
+        overflow: visible;
     }
 
     span.section {}
+
+    span.section>.mainTitle{
+        font-size: 16px;
+        font-weight: bold;
+        color: #F39619;
+    }
 
     span.section>.title {
         font-size: 14px;
@@ -48,6 +131,15 @@
         font-size: 12px;
         font-weight: bold;
         color: #333;
+    }
+
+    span.field{ 
+        display: block; 
+        margin-bottom: 3px; 
+    }
+
+    span.name {
+        font-weight: bold;
     }
 
     .table{ 
@@ -69,14 +161,21 @@
         color: white; 
     } 
 
+    .table_transparent{ 
+        width: 100%; 
+        border-collapse: collapse; 
+        border: none; 
+    }
+
     .table_blue{ 
         width: 100%; 
         border-collapse: collapse; 
+        border: 1px solid #57A7B5;
     } 
     .table_blue td, .table_blue th { 
-        border: 1px solid #57A7B5;
         padding: 8px; 
         vertical-align: top; 
+        border: none;
     } 
     
     .table_blue tr:nth-child(even){
@@ -88,6 +187,12 @@
         background-color:#57A7B5; 
         color: white; 
     }
+
+    @media print {
+        .first-page {
+            page-break-after: always;
+        }
+    }
 </style>
 
 <head>
@@ -96,390 +201,700 @@
 </head>
 
 <body>
-    <span class="page full-page-height first-page">
-        <span class="header">
-            <span class="header-left">
-                <span class="header-logo">
-                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" width="25%" />
-                </span>
-            </span>
-            <span class="header-right">
-                <span class="header-title">
-                    <h1>Generated Report</h1>
-                    <h2>{{title}}</h2>
-                    <p>{{description}}</p>
-                    <ul>
-                        {{#each items}}
-                        <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
-                    <p>Status: {{#safeEmpty}}{{status}}{{/safeEmpty}}</p>
-                </span>
-            </span>
-        </span>
-    </span>
+    <div id="pageHeader">
+    </div>
 
-    <span class="page page-background">
-        <span class="section">
-            <h2 class="title">Submission details</h2>
-            <span class="content">
-                <span class="field">
-                    <span class="name">OICR code: </span>{{#safeEmpty}}{{oicr_code}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Status: </span>{{#safeEmpty}}{{status}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Tag as: </span>{{#safeEmpty}}{{tag}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">AICCRA phase: </span>{{#safeEmpty}}{{aiccra_phase}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Current report year: </span>{{#safeEmpty}}{{current_report_year}}{{/safeEmpty}}
-                </span>
-            </span>
-        </span>
-
-        <br>
-
-        <span class="section">
-            <h2 class="title">General Information</h2>
-            <span class="content">
-                <span class="field">
-                    <span class="name">Cluster: </span> {{#safeEmpty}}{{cluster}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Contributing clusters: </span>
-                    {{#safeEmpty}}{{contributing_clusters}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Lead contact person: </span> {{#safeEmpty}}{{lead_contact_person}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Level of maturity of change reported: </span>
-                    {{#safeEmpty}}{{level_of_maturity}}{{/safeEmpty}}
-                </span>
-            </span>
-        </span>
-
-        <br>
-
-        <span class="section">
-            <h2 class="title">Short outcome/impact statement</h2>
-            <span class="content">
-                <span class="field">
-                    {{#safeEmpty}}{{short_outcome}}{{/safeEmpty}}
-                </span>
-            </span>
-        </span>
-
-        <br>
-
-        <span class="section">
-            <h2 class="title">Elaboration of outcome/impact statement</h2>
-            <span class="content">
-                <span class="field">
-                    {{#safeEmpty}}{{elaboration_outcome}}{{/safeEmpty}}
-                </span>
-            </span>
-        </span>
-
-        <br>
-
-        <span class="section">
-            <h2 class="title">Geographic location</h2>
-            <span class="content">
-                <span class="field">
-                    <span class="name">What is the scope? </span> {{#safeEmpty}}{{scope}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Country(ies): </span> {{#safeEmpty}}{{countries}}{{/safeEmpty}}
-                </span>
-                <span class="field">
-                    <span class="name">Region(s): </span> {{#safeEmpty}}{{regions}}{{/safeEmpty}}
-                </span>
-            </span>
-        </span>
-    </span>
-
-    <span class="page page-background">
-        <span class="section">
-            <h2 class="title">Key contributors</h2>
-            <span class="content">
-                <ul>
-                    {{#each crp}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                    {{#each institutions}}
-                    <li><b>External</b> - {{this}}</li>
-                    {{/each}}
-                </ul>
-            </span>
-        </span>
-
-        <br>
-
-        <span class="section">
-            <h2 class="title">CGIAR innovation(s) or findings that have resulted in this outcome or impact:</h2>
-            <span class="content">
-                <span class="field">
-                    {{#safeEmpty}}{{cgiarInnovation}}{{/safeEmpty}}
-                </span>
-            </span>
-        </span>
-    </span>
-
-    <span class="page page-background">
-        <span class="section">
-            <h2 class="subtitle">Innovations:</h2>
-            <span class="content">
-                <table class="table">
-                    <tr>
-                        <th>Code</th>
-                        <th>Title</th>
-                        <th>PDF</th>
-                    </tr>
-                    {{#each innovations}}
-                    <tr>
-                        <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                        <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td>
-                    </tr>
-                    {{/each}}
-                </table>
-            </span>
-        </span>
-
-        <span class="section">
-            <h2 class="title">Link to performance indicators</h2>
-            <span class="content">
-                <ul>
-                    {{#each performance_indicators}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
-            </span>
-        </span>
-
-        <span class="section">
-            <h2 class="title">Evidence and reference</h2>
-            <span class="content">
-                <table class="table_blue">
-                    <tr>
-                        <th>Code</th>
-                        <th>Title</th>
-                        <th>PDF</th>
-                    </tr>
-                    {{#each evidence}}
-                    <tr>
-                        <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                        <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td>
-                    </tr>
-                    {{/each}}
-                </table>
-            </span>
-        </span>
-
-        <span class="section">
-            <h2 class="title">Quantification</h2>
-            <span class="content">
-                <table class="table_blue">
-                    <tr>
-                        <th>Type</th>
-                        <th>Number</th>
-                        <th>Unit</th>
-                        <th>Comments</th>
-                    </tr>
-                    {{#each quantification}}
-                    <tr>
-                        <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.number}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.unit}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.comments}}{{/safeEmpty}}</td>
-                    </tr>
-                    {{/each}}
-                </table>
-            </span>
-        </span>
-
-        <span class="section">
-            <h2 class="title">Cross-cutting markers</h2>
-            <span class="content">
-                <table>
-                    <tr>
-                    <td>
-                        <img
-                        width='128px'
-                        height='128px'
-                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-nutrition.png'
-                        alt='Logo'
-                        />
+    <div id="pageContent">
+        
+        <span class="page full-page-height first-page">
+            <table class="header" style="height: 10%; ">
+                <tr>
+                    <td width="50%">
+                        <h3>{{#safeEmpty}}{{type}}{{/safeEmpty}}</h3>
                     </td>
-                    <td>
-                        <img
-                        width='128px'
-                        height='128px'
-                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-gender.png'
-                        alt='Logo'
-                        />
+                    <td width="50%" class="header-logo">
+                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="AICCRA Logo" />
                     </td>
-                    <td>
-                        <img
-                        width='128px'
-                        height='128px'
-                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-proverty.png'
-                        alt='Logo'
-                        />
+                </tr>
+            </table>
+            <table style="height: 80%; width: 100%;">
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;">
+                        <h1>{{#safeEmpty}}{{title}}{{/safeEmpty}}</h1>
                     </td>
-                    <td>
-                        <img
-                        width='128px'
-                        height='128px'
-                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-climate.png'
-                        alt='Logo'
-                        />
-                    </td>
-                    <td>
-                        <img
-                        width='128px'
-                        height='128px'
-                        src='https://prms-file-storage.s3.amazonaws.com/images/dac-environment.png'
-                        alt='Logo'
-                        />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td style='text-align: center;'><b>{{#safeEmpty
-                        }}{{nutrition_tag}}{{/safeEmpty}}</b></td>
-                    <td style='text-align: center;'><b>{{#safeEmpty
-                        }}{{gender_tag}}{{/safeEmpty}}</b></td>
-                    <td style='text-align: center;'><b>{{#safeEmpty
-                        }}{{poverty_tag}}{{/safeEmpty}}</b></td>
-                    <td style='text-align: center;'><b>{{#safeEmpty
-                        }}{{climate_tag}}{{/safeEmpty}}</b></td>
-                    <td style='text-align: center;'><b>{{#safeEmpty
-                        }}{{environmental_tag}}{{/safeEmpty}}</b></td>
-                    </tr>
-                </table>
+                </tr>
+            </table>
+            <span style="height:10%; color: #333; font-weight: 300; font-size: 12px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
+        </span>
 
-                <p style='font-size: 7px; margin-top: 16px;'>
-                    0 = Not targeted: The result did not target any of the Impact Area objectives.
-                    <br />
-                    1 = Significant: The result has made a significant contribution to any of the Impact
-                    Area objectives, even though the objective(s) is not the principal focus of the
-                    result.
-                    <br />
-                    2 = Principal: The result is principally about meeting any of the Impact Area
-                    objectives, and this is fundamental in its design and expected results. The result
-                    would not have been undertaken without this objective.
-                </p>
+        {{!--
+        /**
+         * Template for displaying a PDF report section containing:
+         * 
+         * SECTION 1: At a glance
+         * - Short outcome/impact statement
+         * - Geographic location showing:
+         *   - Map image for Africa
+         *   - Scope, countries and regions
+         * - General Information displaying:
+         *   - OICR code with icon
+         *   - Status with icon
+         *   - Tag with icon  
+         *   - Report year with icon
+         *   - Cluster lead with icon
+         *   - Lead contact person with icon
+         *   - Level of maturity with icon
+         * - Other contributing clusters list
+         * - Key contributors table showing:
+         *   - CG Centers/Managing partners
+         *   - External partners
+         *   Each with columns for name, type and headquarter location
+         *
+         * Uses safeEmpty helper for nullable fields
+         * Uses table layouts and custom styling classes
+         * Includes linked icons from S3 bucket
+         */
+        --}}
+        <span class="page">
+
+            <span class="section">
+                <h1 class="mainTitle">SECTION 1: At a glance</h1>
+                <h2 class="title">Short outcome/impact statement</h2>
+                <span class="content">
+                    <span class="field">
+                        {{#safeEmpty}}{{outcomeImpactStatement}}{{/safeEmpty}}
+                    </span>
+                </span>
             </span>
 
             <br>
 
-            <span class="field">
-                <span class="name">Other cross-cutting markers: </span> {{#safeEmpty}}{{other_cross_cutting_markers}}{{/safeEmpty}}
+            <span class="section">
+                <h2 class="title">Geographic location</h2>
+                <span class="content">
+                    <table class="table_transparent">
+                        <tr>
+                            <td width="20%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Africa.png" width="96px" />
+                            </td>
+                            <td width="80%">
+                                <span class="field">
+                                    <span class="name ">Scope: </span> {{#safeEmpty}}{{geographicScopes}}{{/safeEmpty}}
+                                </span>
+                                <span class="field">
+                                    <span class="name">Country(ies): </span> {{#safeEmpty}}{{countries}}{{/safeEmpty}}
+                                </span>
+                                <span class="field">
+                                    <span class="name">Region(s): </span> {{#safeEmpty}}{{regions}}{{/safeEmpty}}
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </span>
             </span>
 
-            <span class="field">
-                <span class="name">Describe any other cross-cutting dimensions: </span>
-                {{#ifEquals other_cross_cutting_markers 'yes'}}
+            <br>
+
+            <span class="section">
+                <h2 class="title">General Information</h2>
+                <span class="content">
+                    <table class="table_transparent">
+                        <tr>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/code.png" width="55px" />
+                            </td>
+                            <td width="15%">
+                                <span class="field">
+                                    <span class="name" style="display: block; color: #8CBF30;">OICR code </span>
+                                    <span >{{#safeEmpty}}{{id}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/status.png" width="55px" />
+                            </td>
+                            <td width="15%">
+                                <span class="field">
+                                    <span class="name" style="display: block; color: #0C9999;">Status </span>
+                                    <span>{{#safeEmpty}}{{status}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/tag_as.png" width="55px" />
+                            </td>
+                            <td width="15%">
+                                <span class="field">
+                                    <span class="name" style="display: block; color: #34752D;">Tag as </span>
+                                    <span>{{#safeEmpty}}{{tagAs}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/year.png" width="55px" />
+                            </td>
+                            <td width="15%">
+                                <span class="field">
+                                    <span class="name" style="display: block; color: #F4971A;">Report year </span>
+                                    <span>{{#safeEmpty}}{{year}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <hr>
+                    <br>
+                    <table class="table_transparent">
+                        <tr>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/cluster_lead.png" width="55px" />
+                            </td>
+                            <td width="17.5%">
+                                <span class="field">
+                                    <span class="name" style="display: block;">Cluster lead </span>
+                                    <span>{{#safeEmpty}}{{clusterLead}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/lead_person.png" width="55px" />
+                            </td>
+                            <td width="17.5%">
+                                <span class="field">
+                                    <span class="name" style="display: block;">Lead contact person </span>
+                                    <span>{{#safeEmpty}}{{leadPerson}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                            <td width="10%">
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/level_maturity.png" width="55px" />
+                            </td>
+                            <td width="17.5%">
+                                <span class="field">
+                                    <span class="name" style="display: block;">Level of maturity </span>
+                                    <span>{{#safeEmpty}}{{stageStudy}}{{/safeEmpty}}</span>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>    
+                </span>
+
+                <br>
+
+                <h2 class="title">Other Clusters contributing</h2>
+                <span class="content">
+                    {{#if studyProjects}}
                     <ul>
-                        {{#each other_cross_cutting_dimensions}}
+                        {{#each studyProjects}}
                         <li>{{this}}</li>
                         {{/each}}
                     </ul>
-                {{else}}
+                    {{else}}
                     Not Required
+                    {{/if}}
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                <h2 class="title">Key contributors</h2>
+                <span class="content">
+                    <table class="table">
+                        <tr>
+                            <th>Category</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Headquarter</th>
+                        </tr>
+                        {{#if (or crp institutions)}}
+                            {{#each crp}}
+                            <tr>
+                                <td>CG Centers/Managing partners</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.type}}</td>
+                                <td>{{this.headquarter}}</td>
+                            </tr>
+                            {{/each}}
+                            {{#each institutions}}
+                            <tr>
+                                <td>External partners</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.type}}</td>
+                                <td>{{this.headquarter}}</td>
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; font-style: italic;">Not information provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                    <p>Note: These are the partners who have significantly contributed to the reported outcome or impact.</p>
+                </span>
+            </span>
+
+        </span>
+
+        
+        {{!--
+        This template represents Section 2 of a report document that displays story and impact information.
+        It contains the following sections:
+
+        1. Elaboration of outcome/impact statement
+            - Displays the main elaboration text using safeEmpty helper
+
+        2. CGIAR innovation(s) and findings section
+            - Shows innovations that resulted in the outcome/impact
+            - Uses safeEmpty helper to safely display content
+
+        3. Innovations table
+            - Displays a list of CGIAR innovations in tabular format
+            - Each row contains:
+              * Innovation code
+              * Title
+              * PDF link
+            - Iterates through cgiarInnovations array using #each helper
+            - Uses safeEmpty helper for each field
+
+        4. Performance indicators
+            - Shows a bulleted list of performance indicators
+            - Iterates through performanceIndicator array using #each helper
+
+        Note: safeEmpty helper is used throughout to handle empty/null values gracefully
+        --}}
+        <span class="page">
+
+            <span class="section">
+                <h1 class="mainTitle">SECTION 2: The story and impact
+                <h2 class="title">Elaboration of outcome/impact statement</h2>
+                <span class="content">
+                    <span class="field">
+                        {{#safeEmpty}}{{elaborationOutcomeImpactStatement}}{{/safeEmpty}}
+                    </span>
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                <h2 class="title">CGIAR innovation(s) or findings that have resulted in this outcome or impact:</h2>
+                <span class="content">
+                    <span class="field">
+                        {{#safeEmpty}}{{cgiarInnovation}}{{/safeEmpty}}
+                    </span>
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                <h2 class="subtitle">Innovations:</h2>
+                <span class="content">
+                    <table class="table">
+                        <tr>
+                            <th>Code</th>
+                            <th>Title</th>
+                            <th>PDF</th>
+                        </tr>
+                        {{#if cgiarInnovations}}
+                            {{#each cgiarInnovations}}
+                            <tr>
+                                <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                                <td>Coming Soon</td>
+                                {{!-- <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td> --}}
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                <h2 class="title">Link to performance indicators</h2>
+                <span class="content">
+                    {{#if performanceIndicator}}
+                    <ul>
+                        {{#each performanceIndicator}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    Not provided
+                    {{/if}}
+                </span>
+            </span>
+        </span>
+
+
+        {{!--
+        This template renders Section 3 of a document focusing on Evidence and Communications.
+        It contains three main subsections:
+
+        1. Evidence and reference
+        - Displays a table with studies/references including code, title and PDF links
+        - Uses studiesReference array to populate data
+        - Each cell is wrapped in safeEmpty helper for null/empty handling
+
+        2. Quantification
+        - Shows quantitative data in tabular format
+        - Columns: Type, Number, Unit, Comments
+        - Populated from quantification array
+        - Uses safeEmpty helper for data safety
+
+        3. Communications
+        - Lists communication materials as clickable links
+        - Displays acknowledgments in a table format
+        - Acknowledgments include Name, Position, and Affiliation
+        - Uses publications array for acknowledgments data
+
+        - Uses safeEmpty helper for handling empty values
+
+        Note: All tables use "table_blue" class for styling
+        --}}
+        <span class="page">
+
+            <span class="section">
+                <h1 class="mainTitle">SECTION 3: Evidence and communications</h1>
+                <h2 class="title">Evidence and reference</h2>
+                <span class="content">
+                    <table class="table_blue">
+                        <tr>
+                            <th>Code</th>
+                            <th>Title</th>
+                            <th>PDF</th>
+                        </tr>
+                        {{#if studiesReference}}
+                            {{#each studiesReference}}
+                            <tr>
+                                <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                                <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td>
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                <h2 class="title">Quantification</h2>
+                <span class="content">
+                    <table class="table_blue">
+                        <tr>
+                            <th>Type</th>
+                            <th>Number</th>
+                            <th>Unit</th>
+                            <th>Comments</th>
+                        </tr>
+                        {{#if quantification}}
+                            {{#each quantification}}
+                            <tr>
+                                <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.number}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.unit}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.comments}}{{/safeEmpty}}</td>
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                <h2 class="title">Communications</h2>
+                <h2 class="subtitle">Communications materials relating to this outcome: </h2>
+                <span class="content">
+                    {{#if links}}
+                        <ul>
+                            {{#each links}}
+                            <li><a href="{{this}}">{{this}}</a></li>
+                            {{/each}}
+                        </ul>
+                    {{else}}
+                    Not provided
+                    {{/if}}
+                </span>
+                <h2 class="subtitle">Acknowledgments:</h2>
+                <span class="content">
+                    <table class="table_blue">
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Affiliation</th>
+                        </tr>
+                        {{#if publications}}
+                            {{#each publications}}
+                            <tr>
+                                <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.position}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.affiliation}}{{/safeEmpty}}</td>
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                </span>
+            </span>
+
+            <br>
+
+        </span>
+
+
+        {{!--
+            Section 4: Alignment with other initiatives template
+            This template renders the alignment section of the report which includes:
+
+            CROSS-CUTTING MARKERS:
+            - Table displaying DAC markers with icons for:
+                * Nutrition
+                * Gender
+                * Poverty
+                * Climate
+                * Environment
+            - Shows corresponding tag values below each icon
+            - Includes legend explaining the 0-2 scoring system
+
+            OTHER CROSS-CUTTING DIMENSIONS:
+            - Conditionally shows list of other dimensions if otherCrossCuttingDimensions='yes'
+            - Shows "Not Required" otherwise
+
+            ALLIANCE ALIGNMENT:
+            - Displays primary alliance lever with:
+                * Name
+                * Strategic outcomes as nested list
+            - Shows related levers
+            - SDG contribution section with:
+                * SDG icon (if primaryAllianceLever exists)
+                * Lists of primary and related SDG contributions
+
+            ONE CGIAR ALIGNMENT:
+            - Shows impact area icon based on impactAreaCode
+            - Displays impact area description
+
+        --}}
+        <span class="page">
+
+            <span class="section">
+                <h1 class="mainTitle">SECTION 4: Alignment with other initiatives</h1>
+                <h2 class="title">Cross-cutting markers</h2>
+                <span class="content">
+                    <table class="table_transparent">
+                        <tr>
+                            <td style="text-align: center;">
+                                <img
+                                width='65px'
+                                height='65px'
+                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Gender-score.png'
+                                alt='Gender Score'
+                                />
+                            </td>
+                            <td style="text-align: center;">
+                                <img
+                                width='65px'
+                                height='65px'
+                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Youth-score.png'
+                                alt='Youth Score'
+                                />
+                            </td>
+                            <td style="text-align: center;">
+                                <img
+                                width='65px'
+                                height='65px'
+                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/CapDev-score.png'
+                                alt='CapDev Score'
+                                />
+                            </td>
+                            <td style="text-align: center;">
+                                <img
+                                width='65px'
+                                height='65px'
+                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Climate-score.png'
+                                alt='Climate Score'
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='text-align: center;'><b>{{#safeEmpty
+                                }}{{genderRelevance}}{{/safeEmpty}}</b></td>
+                            <td style='text-align: center;'><b>{{#safeEmpty
+                                }}{{youthRelevance}}{{/safeEmpty}}</b></td>
+                            <td style='text-align: center;'><b>{{#safeEmpty
+                                }}{{capacityRelevance}}{{/safeEmpty}}</b></td>
+                            <td style='text-align: center;'><b>{{#safeEmpty
+                                }}{{climateRelevance}}{{/safeEmpty}}</b></td>
+                        </tr>
+                    </table>
+
+                    <p style='font-size: 7px; margin-top: 16px;'>
+                        0 = Not targeted: The result did not target any of the Impact Area objectives.
+                        <br />
+                        1 = Significant: The result has made a significant contribution to any of the Impact
+                        Area objectives, even though the objective(s) is not the principal focus of the
+                        result.
+                        <br />
+                        2 = Principal: The result is principally about meeting any of the Impact Area
+                        objectives, and this is fundamental in its design and expected results. The result
+                        would not have been undertaken without this objective.
+                    </p>
+                </span>
+
+                <br>
+
+                <h2 class="subtitle">Other cross-cutting dimensions</h2>
+                <span class="content">
+                    {{#ifEquals otherCrossCuttingDimensions 'yes'}}
+                    <ul>
+                        {{#each otherCrossCuttingDimensionsSelection}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    Not Required, Other cross-cutting dimensions
+                    {{/ifEquals}}
+                </span>
+            </span>
+
+            <br>
+
+            <span class="section">
+                {{#ifEquals isAllianceContribution 'yes'}}
+                    <h2 class="title">Alliance alignment</h2>
+                    <h2 class="subtitle">Link to levers and strategic lever outcomes: </h2>
+                    <span class="content">
+                        {{#if primaryAllianceLever}}
+                            <ul>
+                                <li><b>Primary - </b>{{primaryAllianceLever.name}}
+                                    {{#if primaryAllianceLever.strategicOutcome}}
+
+                                        <ul>
+                                            <li><b>Strategic Lever Outcomes:</b></li>
+                                            {{#each primaryAllianceLever.strategicOutcome}}
+                                            <li>{{this}}</li>
+                                            {{/each}}
+                                        </ul>
+
+                                    {{else}}
+                                        Not provided
+                                    {{/if}}
+                                </li>
+                                {{#if relatedLever}}
+                                    {{#each relatedLever}}
+                                    <li>{{this}}</li>
+                                    {{/each}}
+                                {{/if}}
+                            </ul>
+                        {{else}}
+                            Not provided
+                        {{/if}}
+                    </span>
+                    <h2 class="subtitle">Contribution to SDG:</h2>
+                    <span class="content">
+                        <table class="table_transparent">
+                            <tr>
+                                <!-- Add condition to show sdg image if not, not show td tag -->
+                                {{#if primaryAllianceLever}}
+                                    <td width="20%">
+                                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/sdg/E-WEB-Goal-{{primaryAllianceLever.code}}.png" width="128px" />
+                                    </td>
+                                {{else}}
+                                    <td width="0%"></td>
+                                {{/if}}
+                                <td width="80%">
+                                    {{#if (or primarySDGcontribution relatedSDGContribution)}}                                     
+                                        <ul>
+                                            {{#each primarySDGcontribution}}
+                                            <li>{{this}}</li>
+                                            {{/each}}
+                                            {{#each relatedSDGContribution}}
+                                            <li>{{this}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{else}}
+                                        Not provided
+                                    {{/if}}
+                                </td>
+                            </tr>
+                        </table>
+                    </span>
+                {{else}}
                 {{/ifEquals}}
             </span>
-        </span>
-    </span>
 
-    <span class="page">
-        <span class="section">
-            <h2 class="title">Alliance alignment</h2>
-            <h2 class="subtitle">Link to levers and strategic lever outcomes: </h2>
-            <span class="content">
-                <ul>
-                    {{#each primary_levers}}
-                    <li><b>Primary - </b>{{this}}</li>
-                    {{/each}}
-                    {{#each related_levers}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
-            </span>
-            <h2 class="subtitle">Contribution to SDG:</h2>
-            <span class="content">
-                <table>
-                    <tr>
-                        <td width="20%">
-                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/levers.png" width="128px" />
-                        </td>
-                        <td width="80%">
-                            <ul>
-                                {{#each strategic_outcomes}}
-                                <li>{{this}}</li>
-                                {{/each}}
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            </span>
-        </span>
+            <br>
 
-        <span class="section">
-            <h2 class="title">One CGIAR alignment</h2>
-            <h2 class="subtitle">Link to Impact Areas and Global Targets: </h2>
+            <span class="section">
+                <h2 class="title">One CGIAR alignment</h2>
+                {{#ifEquals hasCgiarContribution 'yes'}}
+                    <h2 class="subtitle">Link to Impact Areas and Global Targets: </h2>
 
-            <span class="content">
-                <table>
-                    <tr>
-                        <td width="20%">
-                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/levers.png" width="128px" />
-                        </td>
-                        <td width="80%">
-                            <span class="field">
-                                {{#safeEmpty}}{{impact_areas}}{{/safeEmpty}}
-                            </span>
-                        </td>
-                    </tr>
-                </table>
+                    <span class="content">
+                        <table class="table_transparent">
+                            <tr>
+                                <td width="20%">
+                                    {{#if impactAreaCode}}
+                                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-{{impactAreaCode}}.png" width="128px" />
+                                    {{else}}
+                                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-1.png" width="128px" />
+                                    {{/if}}
+                                </td>
+                                <td width="80%">
+                                    <span class="field">
+                                        {{#safeEmpty}}{{impactArea}}{{/safeEmpty}}
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </span>
+                {{else}}
+                    <h4>No, this outcome doesn't impact a contribution of the CGIAR in influencing or modifying policies</h4>
+                    <span class="name">Provide reason:</span>
+                    <span class="content">
+                        {{#safeEmpty}}{{reasonNotCgiarContribution}}{{/safeEmpty}}
+                    </span>
+                {{/ifEquals}}
             </span>
-        </span>
 
-        <span class="section">
-            <h2 class="title">Communications</h2>
-            <h2 class="subtitle">Communications materials relating to this outcome: </h2>
-            <span class="content">
-                <ul>
-                    {{#each communications}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
-            </span>
-            <h2 class="subtitle">Acknowledgments:</h2>
-            <span class="content">
-                <table class="table_blue">
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Affiliation</th>
-                    </tr>
-                    {{#each acknowledgments}}
-                    <tr>
-                        <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.position}}{{/safeEmpty}}</td>
-                        <td>{{#safeEmpty}}{{this.affiliation}}{{/safeEmpty}}</td>
-                    </tr>
-                    {{/each}}
-                </table>
-            </span>
+            <br>
+
         </span>
-    </span>
+    </div>
+
+    <div id="pageFooter">
+        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/background.png" class="img-background" />
+        <table class="table_transparent">
+            <tr>
+                <td width="50%" style="text-align: left; vertical-align: middle; padding-left: 5rem;">
+                    <span style="color: #333; font-weight: 300; font-size: 9px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
+                </td>
+                <td width="50%" style="text-align: right; vertical-align: middle; padding-right: 5rem;">
+                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="Logo AICCRA" width="30%" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="pageHeader-1" style="display: none;"></div>
+    <div id="pageFooter-1" style="display: none;"></div>
 
 </body>
 

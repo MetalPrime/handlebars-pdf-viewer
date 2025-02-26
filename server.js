@@ -103,25 +103,35 @@ Handlebars.registerHelper("safeString", function(value) {
     return new Handlebars.SafeString(value);
 });
 
+// Operator OR or  ||
+Handlebars.registerHelper('or', function() {
+    return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+});
+
 app.post('/generate-pdf', async (req, res) => {
     const data = req.body;
+    data.timeCreation = getCurrentDate();
 
     const html = fs.readFileSync(path.join(__dirname, 'assets/template.handlebars'), 'utf8');
     const options = {
-        format: 'A4',
+        format: 'A3',
         orientation: 'portrait',
         border: 0,
         base: 'file://' + path.join(__dirname, 'assets/'),
-        footer: {
-            height: '10mm',
-            contents: {
-                first: `<span style="color: #333; font-family: Barlow; font-size: 12px; ">This report was generated on ${getCurrentDate()} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span> `,
-                default: `<span>
-                    <span style="position: fixed; left: 80px; color: #333; font-family: Barlow; font-size: 9px; ">This report was generated on ${getCurrentDate()} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span> 
-                    <span style="position: fixed; rigth: 80px; "><img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="Logo AICCRA" /></span>
-                </span>`,
-            }
+        header: {
+            height: '40mm'
         },
+        footer: {
+            height: '30mm'
+        },
+        renderDelay: 3000,
+        base: `file://${path.join(__dirname, 'assets')}/`,
+        zoomFactor: 1,
+        phantomPath: require('phantomjs-prebuilt').path,
+        // Add specific PhantomJS options
+        phantomArgs: ['--web-security=false', '--local-to-remote-url-access=true'],
+        // Enable background graphics
+        allowLocalFilesAccess: true,
     };
 
     const document = {

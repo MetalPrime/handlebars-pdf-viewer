@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if(value === null) {
             return new Handlebars.SafeString("N/A");
         } else if (value === "") {
-            return new Handlebars.SafeString("Not specified");
+            return new Handlebars.SafeString("Not provided");
         } else {
             return value;
         }
@@ -82,6 +82,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     //Register a helper to add a safe string
     Handlebars.registerHelper("safeString", function(value) {
         return new Handlebars.SafeString(value);
+    });
+
+    // Operator OR or  ||
+    Handlebars.registerHelper('or', function() {
+        return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
     });
 
     const templateResponse = await fetch("assets/template.handlebars");

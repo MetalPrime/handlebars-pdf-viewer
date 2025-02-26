@@ -1,12 +1,81 @@
 {
-    "title": "Sample Handlebars PDF",
-    "description": "This is a sample description loaded from JSON.",
-    "items": ["Item 1", "Item 2", "Item 3"],
-    "crp": ["CRP 1", "CRP 2", "CRP 3"],
-    "institutions": ["Institution 1", "Institution 2", "Institution 3"],
-    "innovations": [{"code": "454", "title":"Sample Handlebars PDF", "link":"http://www.google.com"}, {"code": "455", "title":"Sample Handlebars PDF 2", "link":"http://www.youtube.com"}],
-    "evidence":[{"code": "454", "title":"Sample Handlebars PDF", "link":"http://www.google.com"}, {"code": "455", "title":"Sample Handlebars PDF 2", "link":"http://www.youtube.com"}],
+    "link" : "https://localhost:8443/marlo-web/projects/AICCRA/studySummary.do?studyID=3517&cycle=Reporting&year=2024",
+    "clusterAcronym" : false,
+    "meliaPublications" : false,
+    "title" : "Early Warning and Rapid Response System operationalised in Ghana to support farmers against climate-driven pests and diseases which cause annual crops losses of USD 1 billion",
+    "type" : "OICR: Outcome Impact Case Report",
+    "outcomeImpactStatement" : "Ghana has operationalised an Early Warning and Rapid Response System for Pests and Diseases (EWRRS-PD) to protect farmers against pests and diseases which cost over USD 1 Billion [1] in yield losses and management costs. After eleven public and private sector organisations validated the framework and signed a Memorandum of Understanding towards its operationalisation, its functional units have been developed with terms of Reference. An EWRRS-PD portal was developed on the Ag-Innovation Data Hub to further consolidate its operationalisation. \r\n\r\n",
+    "geographicScopes" : "Sub-national, National, Regional, Global",
+    "countries" : "Ghana",
+    "regions" : "Central Asia; Australia and New Zealand",
+    "id" : 3517,
+    "allianceOICRID" : "AAA-2134",
+    "status" : "Completed",
+    "tagAs" : "New OICR",
+    "clusterLead": "Ghana",
+    "leadPerson": "Ghislain Tepa-Yotto",
+    "stageStudy": "Level 1 - Discourse/behavior changes (sphere of influence)",
+    "year" : 2024,
+    "studyProjects" : ["Zambia", "Theme 2"], 
+    "crp": [
+        {"name": "(CGIAR IITA) International Institute of Tropical Agriculture", "type": "Institute", "headquarter": "Not available"}
+    ],
+    "institutions": [
+        {"name": "GMet - Ghana Meteorological Agency", "type": "Government", "headquarter": "Ghana"},
+        {"name": "CSIR - Council for Scientific and Industrial Research (Ghana)", "type": "National/local research Institution", "headquarter": "Ghana"},
+        {"name": "BNARI - Biotechnology and Nuclear Agricultural Research Institute", "type": "National/local research Institution", "headquarter": "Ghana"},
+        {"name": "MoFA - Ministry of Food and Agriculture (Ghana)", "type": "Government", "headquarter": "Ghana"},
+        {"name": "CSIR-SARI - Council for Scientific and Industrial Research - Savanna Agricultural Research Institute", "type": "National/local research Institution", "headquarter": "Ghana"},
+        {"name": "UDS - University for Development Studies", "type": "University", "headquarter": "Ghana"},
+        {"name": "Farmerline Ghana - Farmerline Ltd.", "type": "Private company (other than financial)", "headquarter": "Ghana"},
+        {"name": "CSIR-CRI - CSIR-Crops Research Institute", "type": "National/local research Institution", "headquarter": "Ghana"}
+    ],
+    "elaborationOutcomeImpactStatement" : "In Ghana, pests and diseases cause food and agriculture-related losses valued at USD 1 billion every year, impacting the economy and the livelihoods of smallholder farmers. In response, the Plant Protection and Regulatory Services Directorate, of Ghana’s Ministry of Food and Agriculture (PPRSD), mandated to manage crop pests and diseases, sought support from the CGIAR to upgrade Ghana's emergency response plan to pests and diseases. The previous plan targeted only pests from imported commodities and lacked a comprehensive stakeholder support. \r<br>\r<br>An AICCRA paper proposed a holistic framework for multi-stakeholder participation in Climate-Smart Integrated Pests Management (CS-IPM) [2] .Through a public-private partnership, informed and supported by AICCRA, a new plan and response framework was developed. This has since been developed into an EWRRS-PD for Ghana [3,4] which encompasses all crop pests and diseases and consolidates stakeholders' expertise in research, monitoring, and risk communication [5]. \r<br>\r<br>In 2024, PPRSD and the Biotechnology and Nuclear Agriculture Research Institute (BNARI), with techincal and financial support from AICCRA spearheaded the operationalisation of the framework. They led the creation of the functional units of the EWRRS-PD on the ground and co-developed TORs for the operations of these functional units with stakeholders [6, 8]. The units include a Steering Committee, Technical Working Group, Crop Officers and Agriculture Extension Officers Network, and Communication Group who are functionally connected for emergency response. \r<br>\r<br>To further consolidate operationalisation of the EWRRS-PD, AICCRA Partner, the Institute of Scientific and Technological Information which host Ghana’s Ag-Innovation Data Hub (AIDH), developed an EWRRS-PD portal on the AIDH.This portal provides structured series of steps  that streamlines the response process, starting with report submission, initial investigation, risk assessment, and risks verification and validation for accurate and reliable information. With validation complete, the portal facilitates coordination among critical response entities to align their response strategies. An Alert Preparation stage involves crafting alerts and advisories tailored to the incident, are then distributed in an alert dissemination phase to key stakeholders for dissemination. This comprehensive workflow integrated into the AIDH enables the functional units of the EWRRS-PD to manage each phase of pest and disease response efficiently thereby offering coordinated action across multiple agencies for a robust and unified emergency response system [7 page 7].\r<br>\r<br>While the system has not triggered yet, the EWRRS-PD is ready and prepared to ensure farmers receive timely pest warnings and access appropriate solutions to manage pests and diseases to protect their yields and investments. \r<br>\r<br>\r<br>",
+    "cgiarInnovation" : "AICCRA's Climate Smart Integrated Pest Management (CS-IPM)\r\nAICCRA Supported Ag-Innovation Data Hub",
+    "cgiarInnovations": [
+        {
+            "code": "1625",
+            "title": "Early Warning and Rapid Response System for Pests and Diseases (EWRRS-PD)",
+            "PDF": "Coming Soon"
+        },
+        {
+            "code": "1613",
+            "title": "Climate Risk Management in Agricultural Extension (CRMAE) curriculum and approach builds foundational knowledge and skills for extension workers to help farmers better plan for, manage, and respond to climate risk",
+            "PDF": "Coming Soon"
+        }
+    ],
+    "performanceIndicator": ["(2024-2025) PDO Indicator 5: Beneficiaries with enhanced resilience to climate risks", "(2024-2025) PDO Indicator 1: Partners and stakeholders in the Project area increasingly accessing enhanced climate information services and/or validated climate-smart agriculture indicators "],
+    "studiesReference":[{"code": "454", "title":"Sample Handlebars PDF", "link":"http://www.google.com"}, {"code": "455", "title":"Sample Handlebars PDF 2", "link":"http://www.youtube.com"}],
     "quantification": [{"type": "Type 1", "number": "1", "unit": "Unit", "comment": "Comment"}, {"type": "Type 2", "number": "2", "unit": "Unit", "comment": "Comment"}],
-    "other_cross_cutting_markers": "no",
-    "acknowledgments": [{"name": "Name 1", "position": "Position 1", "affiliation": "Affiliation 1"}, {"name": "Name 2", "position": "Position 2", "affiliation": "Affiliation 2"}]
+    "genderRelevance" : "0 - Not Targeted",
+    "youthRelevance" : "0 - Not Targeted",
+    "capacityRelevance" : "1 - Significant",
+    "climateRelevance" : "1 - Significant",
+    "otherCrossCuttingDimensions": "no",
+    "otherCrossCuttingDimensionsSelection": "To be filled as per what users indicated",
+    "isAllianceContribution" : "yes",
+    "primaryAllianceLever": {"name": "Lever 1: Food Environment and Consumer Behavior", "code": 1, "strategicOutcome": ["National and international bodies promote more sustainably sourced, healthy food options.", "Market actors increase equity and inclusion of women and youth in priority urban food environments."] },
+    "primarySDGcontribution" : [
+        "1.1 By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day",
+        "2.2 By 2030, end all forms of malnutrition, including achieving, by 2025, the internationally agreed targets on stunting and wasting in children under 5 years of age, and address the nutritional needs of adolescent girls, pregnant and lactating women and older persons",
+        "12.1 Implement the 10-Year Framework of Programmes on Sustainable Consumption and Production Patterns, all countries taking action, with developed countries taking the lead, taking into account the development and capabilities of developing countries"
+    ],
+    "relatedLever" : ["Lever 2: Multifunctional Landscapes", "Lever 3: Sustainable Food Systems"],
+    "relatedSDGContribution" : [
+        "1.1 By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day",
+        "2.2 By 2030, end all forms of malnutrition, including achieving, by 2025, the internationally agreed targets on stunting and wasting in children under 5 years of age, and address the nutritional needs of adolescent"
+    ],
+    "hasCgiarContribution" : "yes",
+    "impactArea" : "Impact area 4: Climate adaptation and mitigation",
+    "ïmpactAreaCode" : 4,
+    "reasonNotCgiarContribution" : "To be filled as per what users indicated",
+    "links" : [
+        "https://tinyurl.com/yrt4apsm",
+        "https://cabiagbio.biomedcentral.com/articles/10.1186/s43170-021-00038-7",
+        "https://tinyurl.com/ysd96qt2",
+        "https://tinyurl.com/yna7jacx"
+    ],
+    "publications": [{"name": "Name 1", "position": "Position 1", "affiliation": "Affiliation 1"}, {"name": "Name 2", "position": "Position 2", "affiliation": "Affiliation 2"}],
+    "contacts" : "CGIAR IITA - International Institute of Tropical Agriculture<br>&nbsp;&nbsp;&nbsp;&nbsp; ●Tepa-Yotto, Ghislain <g.tepa-yotto@cgiar.org>"
+
 }
