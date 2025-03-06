@@ -9,13 +9,13 @@
 
     body {
         font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
+        font-size: 11px;
         color: #333;
         margin: 0;
     }
 
     h1 {
-        font-size: 16px;
+        font-size: 14px;
         color: #333;
         font-weight: bold;
     }
@@ -93,7 +93,7 @@
     .header h3 {
         margin: 0;
         text-align: left;
-        font-size: 16px;
+        font-size: 14px;
         color: #333;
     }
 
@@ -124,7 +124,7 @@
     span.section {}
 
     span.section>.mainTitle{
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         color: #F39619;
     }
@@ -143,11 +143,19 @@
 
     span.field{ 
         display: block; 
-        margin-bottom: 3px; 
+        margin-bottom: 3px;
+        font-weight: lighter; 
+        font-size: 11px;
     }
 
     span.name {
         font-weight: bold;
+    }
+
+    span.subtitle {
+        display: block;
+        font-family: 'Barlow';
+        font-size: 10px;
     }
 
     .table{ 
@@ -196,6 +204,10 @@
         color: white; 
     }
 
+    .opacity-50 {
+        fill-opacity: 0.5;
+    }
+
     @media print {
         .first-page {
             page-break-after: always;
@@ -206,6 +218,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Generated Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -302,7 +316,7 @@
                             </td>
                             <td width="15%">
                                 <span class="field">
-                                    <span class="name" style="display: block; color: #8CBF30;">OICR code </span>
+                                    <span class="name subtitle" style=" color: #8CBF30;">OICR code </span>
                                     <span >{{#safeEmpty}}{{id}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
@@ -311,7 +325,7 @@
                             </td>
                             <td width="15%">
                                 <span class="field">
-                                    <span class="name" style="display: block; color: #0C9999;">Status </span>
+                                    <span class="name subtitle" style="color: #0C9999;">Status </span>
                                     <span>{{#safeEmpty}}{{status}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
@@ -320,7 +334,7 @@
                             </td>
                             <td width="15%">
                                 <span class="field">
-                                    <span class="name" style="display: block; color: #34752D;">Tag as </span>
+                                    <span class="name subtitle" style="color: #34752D;">Tag as </span>
                                     <span>{{#safeEmpty}}{{tagAs}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
@@ -345,8 +359,8 @@
                             </td>
                             <td width="17.5%">
                                 <span class="field">
-                                    <span class="name" style="display: block;">Cluster lead </span>
-                                    <span>{{#safeEmpty}}{{clusterName}}{{/safeEmpty}}</span>
+                                    <span class="name subtitle" >Cluster lead </span>
+                                    <span style="font-size: 9px;">{{#safeEmpty}}{{clusterName}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
                             <td width="10%">
@@ -354,8 +368,8 @@
                             </td>
                             <td width="17.5%">
                                 <span class="field">
-                                    <span class="name" style="display: block;">Lead contact person </span>
-                                    <span>{{#safeEmpty}}{{leadPerson}}{{/safeEmpty}}</span>
+                                    <span class="name subtitle" >Lead contact person </span>
+                                    <span style="font-size: 9px;">{{#safeEmpty}}{{leadPerson}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
                             <td width="10%">
@@ -363,8 +377,8 @@
                             </td>
                             <td width="17.5%">
                                 <span class="field">
-                                    <span class="name" style="display: block;">Level of maturity </span>
-                                    <span>{{#safeEmpty}}{{stageStudy}}{{/safeEmpty}}</span>
+                                    <span class="name subtitle" >Level of maturity </span>
+                                    <span style="font-size: 9px;">{{#safeEmpty}}{{stageStudy}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
                         </tr>
@@ -423,7 +437,7 @@
                             </tr>
                         {{/if}}
                     </table>
-                    <p>Note: These are the partners who have significantly contributed to the reported outcome or impact.</p>
+                    <p style="font-size: 10px;">Note: These are the partners who have significantly contributed to the reported outcome or impact.</p>
                 </span>
             </span>
 
@@ -569,7 +583,7 @@
                             <tr>
                                 <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                                <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td>
+                                <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">{{#safeEmpty}}{{this.link}}{{/safeEmpty}}</a></td>
                             </tr>
                             {{/each}}
                         {{else}}
@@ -759,7 +773,7 @@
 
                 <h2 class="subtitle">Other cross-cutting dimensions</h2>
                 <span class="content">
-                    {{#ifEquals otherCrossCuttingDimensions 'yes'}}
+                    {{#ifEquals otherCrossCuttingDimensions 'Yes'}}
                     <ul>
                         {{#each otherCrossCuttingDimensionsSelection}}
                         <li>{{this}}</li>
@@ -774,7 +788,7 @@
             <br>
 
             <span class="section">
-                {{#ifEquals isAllianceContribution 'yes'}}
+                {{#ifEquals isAllianceContribution 'Yes'}}
                     <h2 class="title">Alliance alignment</h2>
                     <h2 class="subtitle">Link to levers and strategic lever outcomes: </h2>
                     <span class="content">
@@ -841,7 +855,7 @@
 
             <span class="section">
                 <h2 class="title">One CGIAR alignment</h2>
-                {{#ifEquals hasCgiarContribution 'yes'}}
+                {{#ifEquals hasCgiarContribution 'Yes'}}
                     <h2 class="subtitle">Link to Impact Areas and Global Targets: </h2>
 
                     <span class="content">
@@ -877,14 +891,14 @@
     </div>
 
     <div id="pageFooter">
-        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Footer-PDF.png" class="img-background" />
-        <table class="table_transparent">
+        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Footer-PDF.png" class="img-background opacity-50 " />
+        <table class="table_transparent opacity-50">
             <tr>
-                <td width="50%" style="text-align: left; vertical-align: middle; padding-left: 5rem;">
+                <td width="60%" style="text-align: left; vertical-align: middle; padding-left: 5rem; padding-top: 48px;">
                     <span style="color: #333; font-weight: 300; font-size: 9px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
                 </td>
-                <td width="50%" style="text-align: right; vertical-align: middle; padding-right: 5rem;">
-                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="Logo AICCRA" width="30%" />
+                <td width="40%" style="text-align: right; vertical-align: middle; padding-right: 5rem; padding-top: 16px;">
+                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="Logo AICCRA" width="40%" />
                 </td>
             </tr>
         </table>
@@ -894,9 +908,9 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="534" height="116" viewBox="0 0 534 116" fill="none" style="position: absolute; top: 0; left: 0; z-index: -1;">
             <path d="M0.105347 0.052002H533.843C489.398 72.2692 468.504 109.308 418.843 115.052H0.105347V0.052002Z" fill="#15999A"/>
         </svg>
-        <table class="header" style="height: 100%; ">
+        <table class="header" style="height: 100%; margin-top: 2.5rem;">
             <tr>
-                <td width="50%" style="padding-left: 5rem; text-align: left; vertical-align: middle;">
+                <td width="50%" style="padding-left: 5rem; text-align: left; vertical-align: top;">
                     <h3 style="color: white;">{{#safeEmpty}}{{type}}{{/safeEmpty}}</h3>
                 </td>
                 <td width="50%" style="padding-right: 5rem; text-align: right; vertical-align: middle;" class="header-logo">
@@ -906,7 +920,13 @@
         </table>
     </div>
     <div id="pageFooter-1">
-        <span style="height:100%; width:100%; text-align:center; color: #333; font-weight: 300; font-size: 12px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
+        <table style="height:100%; width:100%;" class="opacity-50">
+            <tr>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span style="padding-left: 10rem; padding-right: 10rem; text-align:center; color: #333; font-weight: 300; font-size: 11px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
+                </td>
+            </tr>
+        </table>
     </div>
 
 </body>
