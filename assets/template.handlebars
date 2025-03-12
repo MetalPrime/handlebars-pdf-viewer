@@ -158,6 +158,10 @@
         font-size: 10px;
     }
 
+    table {
+        font-size: 11px;
+    }
+
     .table{ 
         width: 100%; 
         border-collapse: collapse; 
@@ -273,7 +277,7 @@
                 <h2 class="title">Short outcome/impact statement</h2>
                 <span class="content">
                     <span class="field">
-                        {{#safeEmpty}}{{outcomeImpactStatement}}{{/safeEmpty}}
+                        {{#safeEmpty}}{{{outcomeImpactStatement}}}{{/safeEmpty}}
                     </span>
                 </span>
             </span>
@@ -392,7 +396,7 @@
                 <span class="content">
                     {{#if studyProjects}}
                     <ul>
-                        {{#each studyProjects}}
+                        {{#each (parseJSON studyProjects)}}
                         <li>{{this}}</li>
                         {{/each}}
                     </ul>
@@ -414,8 +418,8 @@
                             <th>Type</th>
                             <th>Headquarter</th>
                         </tr>
-                        {{#if (or crp institutions)}}
-                            {{#each crp}}
+                        {{#if (or centers institutions)}}
+                            {{#each (parseJSON centers)}}
                             <tr>
                                 <td>CG Centers/Managing partners</td>
                                 <td>{{this.name}}</td>
@@ -423,7 +427,7 @@
                                 <td>{{this.headquarter}}</td>
                             </tr>
                             {{/each}}
-                            {{#each institutions}}
+                            {{#each (parseJSON institutions)}}
                             <tr>
                                 <td>External partners</td>
                                 <td>{{this.name}}</td>
@@ -477,7 +481,7 @@
                 <h2 class="title">Elaboration of outcome/impact statement</h2>
                 <span class="content">
                     <span class="field">
-                        {{#safeEmpty}}{{elaborationOutcomeImpactStatement}}{{/safeEmpty}}
+                        {{#safeEmpty}}{{{elaborationOutcomeImpactStatement}}}{{/safeEmpty}}
                     </span>
                 </span>
             </span>
@@ -488,7 +492,7 @@
                 <h2 class="title">CGIAR innovation(s) or findings that have resulted in this outcome or impact:</h2>
                 <span class="content">
                     <span class="field">
-                        {{#safeEmpty}}{{cgiarInnovation}}{{/safeEmpty}}
+                        {{#safeEmpty}}{{{cgiarInnovation}}}{{/safeEmpty}}
                     </span>
                 </span>
             </span>
@@ -505,12 +509,12 @@
                             <th>PDF</th>
                         </tr>
                         {{#if cgiarInnovations}}
-                            {{#each cgiarInnovations}}
+                            {{#each (parseJSON cgiarInnovations)}}
                             <tr>
                                 <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
                                 <td>Coming Soon</td>
-                                {{!-- <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">Link to pdf</a></td> --}}
+                                {{!-- <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}" target="_blank">Link to pdf</a></td> --}}
                             </tr>
                             {{/each}}
                         {{else}}
@@ -529,7 +533,7 @@
                 <span class="content">
                     {{#if performanceIndicator}}
                     <ul>
-                        {{#each performanceIndicator}}
+                        {{#each (parseJSON performanceIndicator)}}
                         <li>{{this}}</li>
                         {{/each}}
                     </ul>
@@ -579,11 +583,11 @@
                             <th>PDF</th>
                         </tr>
                         {{#if studiesReference}}
-                            {{#each studiesReference}}
+                            {{#each (parseJSON studiesReference)}}
                             <tr>
                                 <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                                <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}">{{#safeEmpty}}{{this.link}}{{/safeEmpty}}</a></td>
+                                <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}" target="_blank">{{#safeEmpty}}{{this.link}}{{/safeEmpty}}</a></td>
                             </tr>
                             {{/each}}
                         {{else}}
@@ -608,7 +612,7 @@
                             <th>Comments</th>
                         </tr>
                         {{#if quantification}}
-                            {{#each quantification}}
+                            {{#each (parseJSON quantification)}}
                             <tr>
                                 <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.number}}{{/safeEmpty}}</td>
@@ -633,8 +637,8 @@
                 <span class="content">
                     {{#if links}}
                         <ul>
-                            {{#each links}}
-                            <li><a href="{{this}}">{{this}}</a></li>
+                            {{#each (parseJSON links)}}
+                            <li><a href="{{this}}" target="_blank">{{this}}</a></li>
                             {{/each}}
                         </ul>
                     {{else}}
@@ -650,7 +654,7 @@
                             <th>Affiliation</th>
                         </tr>
                         {{#if publications}}
-                            {{#each publications}}
+                            {{#each (parseJSON publications)}}
                             <tr>
                                 <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.position}}{{/safeEmpty}}</td>
@@ -773,12 +777,9 @@
 
                 <h2 class="subtitle">Other cross-cutting dimensions</h2>
                 <span class="content">
-                    {{#ifEquals otherCrossCuttingDimensions 'Yes'}}
-                    <ul>
-                        {{#each otherCrossCuttingDimensionsSelection}}
-                        <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
+                    <p><b>{{otherCrossCuttingSelection}}</b></p>
+                    {{#ifEquals otherCrossCuttingSelection 'Yes'}}
+                    <p>{{otherCrossCuttingDimensions}}</p>
                     {{else}}
                     Not Required, Other cross-cutting dimensions
                     {{/ifEquals}}
@@ -793,13 +794,13 @@
                     <h2 class="subtitle">Link to levers and strategic lever outcomes: </h2>
                     <span class="content">
                         {{#if primaryAllianceLever}}
+                            {{#with (parseJSON primaryAllianceLever)}}
                             <ul>
-                                <li><b>Primary - </b>{{primaryAllianceLever.name}}
-                                    {{#if primaryAllianceLever.strategicOutcome}}
-
+                                <li><b>Primary - </b>{{this.name}}
+                                    {{#if this.strategicOutcome}}
                                         <ul>
                                             <li><b>Strategic Lever Outcomes:</b></li>
-                                            {{#each primaryAllianceLever.strategicOutcome}}
+                                            {{#each this.strategicOutcome}}
                                             <li>{{this}}</li>
                                             {{/each}}
                                         </ul>
@@ -808,8 +809,9 @@
                                         Not provided
                                     {{/if}}
                                 </li>
+                            {{/with}}
                                 {{#if relatedLever}}
-                                    {{#each relatedLever}}
+                                    {{#each (parseJSON relatedLever)}}
                                     <li>{{this}}</li>
                                     {{/each}}
                                 {{/if}}
@@ -824,19 +826,21 @@
                             <tr>
                                 <!-- Add condition to show sdg image if not, not show td tag -->
                                 {{#if primaryAllianceLever}}
-                                    <td width="20%">
-                                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/sdg/E-WEB-Goal-{{primaryAllianceLever.code}}.png" width="128px" />
-                                    </td>
+                                    {{#with (parseJSON primaryAllianceLever)}}
+                                        <td width="20%">
+                                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/sdg/E-WEB-Goal-{{this.code}}.png" width="128px" />
+                                        </td>
+                                    {{/with}}
                                 {{else}}
                                     <td width="0%"></td>
                                 {{/if}}
                                 <td width="80%">
                                     {{#if (or primarySDGcontribution relatedSDGContribution)}}                                     
                                         <ul>
-                                            {{#each primarySDGcontribution}}
+                                            {{#each (parseJSON primarySDGcontribution)}}
                                             <li>{{this}}</li>
                                             {{/each}}
-                                            {{#each relatedSDGContribution}}
+                                            {{#each (parseJSON relatedSDGContribution)}}
                                             <li>{{this}}</li>
                                             {{/each}}
                                         </ul>
@@ -862,11 +866,7 @@
                         <table class="table_transparent">
                             <tr>
                                 <td width="20%">
-                                    {{#if impactAreaCode}}
-                                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-{{impactAreaCode}}.png" width="128px" />
-                                    {{else}}
-                                        <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-1.png" width="128px" />
-                                    {{/if}}
+                                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-{{impactAreaCode}}.png" width="128px" />
                                 </td>
                                 <td width="80%">
                                     <span class="field">

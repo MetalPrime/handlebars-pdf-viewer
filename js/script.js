@@ -89,6 +89,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
     });
 
+    // Return the type of object passed in the variable
+    Handlebars.registerHelper('typeof', function(value) {
+        return typeof value;
+    });
+
+    Handlebars.registerHelper("json", function(context) {
+        return JSON.stringify(context, null, 2); // Pretty print
+    });
+
+    Handlebars.registerHelper('parseJSON', function(jsonString) {
+        try {
+            return JSON.parse(jsonString);
+        } catch (e) {
+            console.error('Error parsing JSON:', e);
+            return [];
+        }
+    });
+
     const templateResponse = await fetch("assets/template.handlebars");
     const templateText = await templateResponse.text();
     const template = Handlebars.compile(templateText);

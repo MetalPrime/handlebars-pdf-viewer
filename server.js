@@ -108,6 +108,24 @@ Handlebars.registerHelper('or', function() {
     return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
 });
 
+// Return the type of object passed in the variable
+Handlebars.registerHelper('typeof', function(value) {
+    return typeof value;
+});
+
+Handlebars.registerHelper("json", function(context) {
+    return JSON.stringify(context, null, 2); // Pretty print
+});
+
+Handlebars.registerHelper('parseJSON', function(jsonString) {
+    try {
+        return JSON.parse(jsonString);
+    } catch (e) {
+        console.error('Error parsing JSON:', e);
+        return [];
+    }
+});
+
 app.post('/generate-pdf', async (req, res) => {
     const data = req.body;
     data.timeCreation = getCurrentDate();
