@@ -160,6 +160,7 @@
 
     table {
         font-size: 11px;
+        overflow: hidden;
     }
 
     .table{ 
@@ -511,10 +512,14 @@
                         {{#if cgiarInnovations}}
                             {{#each (parseJSON cgiarInnovations)}}
                             <tr>
-                                <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                                <td>Coming Soon</td>
+                                <td width="33%">{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
+                                <td width="33%">{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                                <td width="33%">Coming Soon</td>
                                 {{!-- <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}" target="_blank">Link to pdf</a></td> --}}
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
                             </tr>
                             {{/each}}
                         {{else}}
@@ -585,9 +590,13 @@
                         {{#if studiesReference}}
                             {{#each (parseJSON studiesReference)}}
                             <tr>
-                                <td>{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                                <td><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}" target="_blank">{{#safeEmpty}}{{this.link}}{{/safeEmpty}}</a></td>
+                                <td width="10%">{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
+                                <td width="45%">{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                                <td width="45%" style="word-break: break-all;"><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}" target="_blank">{{#safeEmpty}}{{this.link}}{{/safeEmpty}}</a></td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
                             </tr>
                             {{/each}}
                         {{else}}
@@ -619,6 +628,10 @@
                                 <td>{{#safeEmpty}}{{this.unit}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.comments}}{{/safeEmpty}}</td>
                             </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
                             {{/each}}
                         {{else}}
                             <tr>
@@ -639,6 +652,8 @@
                         <ul>
                             {{#each (parseJSON links)}}
                             <li><a href="{{this}}" target="_blank">{{this}}</a></li>
+                            {{else}}
+                            <li>Not provided</li>
                             {{/each}}
                         </ul>
                     {{else}}
@@ -659,6 +674,10 @@
                                 <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.position}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.affiliation}}{{/safeEmpty}}</td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
                             </tr>
                             {{/each}}
                         {{else}}
