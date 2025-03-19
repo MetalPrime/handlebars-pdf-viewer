@@ -189,11 +189,11 @@
     } 
     .table_blue td, .table_blue th { 
         padding: 8px; 
-        vertical-align: top; 
-        border: none;
+        vertical-align: top;
+        border: 1px solid #57A7B5;
     } 
     
-    .table_blue tr:nth-child(even){
+    .table_blue tr:nth-child(odd){
         background-color: #CEE6EA; 
     } 
     .table_blue th{ 
@@ -240,7 +240,7 @@
         <span class="page">
 
             <span class="section">
-                <h1 class="mainTitle">SECTION 1: At a glance</h1>
+                <h1 class="mainTitle">SECTION: At a glance</h1>
                 <h2 class="title">Description</h2>
                 <span class="content">
                     <span class="field">
@@ -264,7 +264,7 @@
                     <table class="table_transparent">
                         <tr>
                             <td width="10%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/code.png" width="55px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/code.png" width="48px" />
                             </td>
                             <td width="17.5%">
                                 <span class="field">
@@ -273,7 +273,7 @@
                                 </span>
                             </td>
                             <td width="10%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+Cluster.png" width="55px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+Cluster.png" width="48px" />
                             </td>
                             <td width="17.5%">
                                 <span class="field">
@@ -282,7 +282,7 @@
                                 </span>
                             </td>
                             <td width="10%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/year.png" width="55px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/year.png" width="48px" />
                             </td>
                             <td width="17.5%">
                                 <span class="field">
@@ -293,12 +293,10 @@
                         </tr>
                     </table>
                     <br>
-                    <hr>
-                    <br>
                     <table class="table_transparent">
                         <tr>
                             <td width="10%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+nature.png" width="55px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+nature.png" width="48px" />
                             </td>
                             <td width="17.5%">
                                 <span class="field">
@@ -307,7 +305,7 @@
                                 </span>
                             </td>
                             <td width="10%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+type.png" width="55px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+type.png" width="48px" />
                             </td>
                             <td width="17.5%">
                                 <span class="field">
@@ -316,7 +314,7 @@
                                 </span>
                             </td>
                             <td width="10%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+function.png" width="55px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+function.png" width="48px" />
                             </td>
                             <td width="17.5%">
                                 <span class="field">
@@ -354,10 +352,10 @@
                     <span class="content">
                         <table class="table_transparent">
                             <tr>
-                                <td width="10%">
-                                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-{{impactAreaCode}}.png" width="64px" />
+                                <td width="15%">
+                                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/impact-areas/ICONS+CGIAR-{{impactAreaCode}}.png" width="71.04px" />
                                 </td>
-                                <td width="90%">
+                                <td width="85%">
                                     <span class="field">
                                         {{#safeEmpty}}{{impactArea}}{{/safeEmpty}}
                                     </span>
@@ -469,47 +467,75 @@
             </span>
 
         </span>
-
-{{!--         <span class="page">
-
+        
+        <span class="page">
             <span class="section">
-                <h1 class="mainTitle">SECTION 2: The story and impact
-                <h2 class="title">Elaboration of outcome/impact statement</h2>
+                <h1 class="mainTitle">SECTION: Scaling Potential</h1>
+                <h2 class="title">Anticipated users of this innovation:</h2>
+                <h3 class="subtitle">Actors</h3>
                 <span class="content">
-                    <span class="field">
-                        {{#safeEmpty}}{{{elaborationOutcomeImpactStatement}}}{{/safeEmpty}}
-                    </span>
-                </span>
-            </span>
-
-            <br>
-
-            <span class="section">
-                <h2 class="title">CGIAR innovation(s) or findings that have resulted in this outcome or impact:</h2>
-                <span class="content">
-                    <span class="field">
-                        {{#safeEmpty}}{{{cgiarInnovation}}}{{/safeEmpty}}
-                    </span>
-                </span>
-            </span>
-
-            <br>
-
-            <span class="section">
-                <h2 class="subtitle">Innovations:</h2>
-                <span class="content">
-                    <table class="table">
+                    <table class="table_blue">
                         <tr>
-                            <th>Code</th>
-                            <th>Title</th>
-                            <th>PDF</th>
+                            <th>#</th>
+                            <th>Type</th>
+                            <th colspan="2">Women</th>
+                            <th colspan="2">Men</th>
+                            <th colspan="2">Non-binary</th>
                         </tr>
-                        {{#if cgiarInnovations}}
-                            {{#each (parseJSON cgiarInnovations)}}
+                        {{#if actors}}
+                            {{#each (parseJSON actors)}}
                             <tr>
-                                <td width="33%">{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
-                                <td width="33%">{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                                <td width="33%">Coming Soon</td>
+                                <td rowspan="2" width="10%">{{@index}}</td>
+                                <td rowspan="2" width="30%">{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
+                                <td>Youth</td>
+                                <td>Non-youth</td>
+                                <td>Youth</td>
+                                <td>Non-youth</td>
+                                <td>Youth</td>
+                                <td>Non-youth</td>
+                            </tr>
+                            {{#ifEquals this.sexAgeNotApply 'Yes'}}
+                                <tr>
+                                    <td colspan="2">Not applicable</td>
+                                    <td colspan="2">Not applicable</td>
+                                    <td colspan="2">Not applicable</td>
+                                </tr>
+                            {{else}}
+                                <tr>
+                                    <td>{{#safeEmpty}}{{this.womenYouth}}{{/safeEmpty}}</td>
+                                    <td>{{#safeEmpty}}{{this.womenNotYouth}}{{/safeEmpty}}</td>
+                                    <td>{{#safeEmpty}}{{this.menYouth}}{{/safeEmpty}}</td>
+                                    <td>{{#safeEmpty}}{{this.menNotYouth}}{{/safeEmpty}}</td>
+                                    <td>{{#safeEmpty}}{{this.nonbinaryYouth}}{{/safeEmpty}}</td>
+                                    <td>{{#safeEmpty}}{{this.nonbinaryNotYouth}}{{/safeEmpty}}</td>
+                                </tr>
+                            {{/ifEquals}}
+                            {{else}}
+                            <tr>
+                                <td colspan="8" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="8" style="text-align: center; font-style: italic;">No information provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                </span>
+                <h3 class="subtitle">Organizations</h3>
+                <span class="content">
+                    <table class="table_blue">
+                        <tr>
+                            <th>#</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                        </tr>
+                        {{#if allianceOrganizations}}
+                            {{#each (parseJSON allianceOrganizations)}}
+                            <tr>
+                                <td>{{@index}}</td>
+                                <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
                             </tr>
                             {{else}}
                             <tr>
@@ -518,289 +544,113 @@
                             {{/each}}
                         {{else}}
                             <tr>
-                                <td colspan="3" style="text-align: center; font-style: italic;"><i>No information provided</i></td>
+                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
                             </tr>
                         {{/if}}
                     </table>
                 </span>
+                <h3 class="subtitle">Intended beneficiaries/users likely to benefit </h3>
+                <span class="content">
+                    <span class="field">
+                        {{#safeEmpty}}{{{beneficiariesNarrative}}}{{/safeEmpty}}
+                    </span>
+                </span>
             </span>
+        </span>
 
-            <br>
+        <span class="page">
+            <table>
+                <tr>
+                    <td style='width: 350px; vertical-align: top;'>
+                        <span class='section'>
+                            {{#if knowledgeMethodsAndToolsNarrative}}
+                                <h3 class="subtitle">Methods and tools that were developed to support the outreach and the use of this reported innovation</h3>
+                                <span class="content">
+                                    <span class="field">
+                                        {{#safeEmpty}}{{{knowledgeMethodsAndToolsNarrative}}}{{/safeEmpty}}
+                                    </span>
+                                </span>
+                            {{/if}}
+                            <h3 class="subtitle">Results achieved and outcomes expected:</h3>
+                            <span class="content">
+                                <span class="field">
+                                    {{#safeEmpty}}{{{knowledgeResultsNarrative}}}{{/safeEmpty}}
+                                </span>
+                            </span>
+                        </span>
 
-        </span>  --}}
+                    </td>
 
-{{!--         <span class="page">
+                    <td style='vertical-align: top; text-align: center;'>
 
+                    {{#if readinessScale}}
+                        <img 
+                        width='80%' 
+                        src="https://prms-file-storage.s3.amazonaws.com/images/inno-scaling-readiness-{{readinessScale}}.png" 
+                        alt='Logo' />
+                    {{else}}
+                        <img
+                        width='80%'
+                        src='https://prms-file-storage.s3.amazonaws.com/images/inno-scaling-readiness-not-provided.png'
+                        alt='Logo'
+                        />
+                    {{/if}}
+
+                    <br />
+                    <span style='font-size: 10px;'>
+                        Learn more in
+                        <a
+                        href='www.scalingreadiness.org'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        class='link'
+                        >www.scalingreadiness.org</a>
+                    </span>
+                    </td>
+                </tr>
+            </table>
+        </span>
+
+        <span class="page">
             <span class="section">
-                <h1 class="mainTitle">SECTION 3: Evidence and communications</h1>
                 <h2 class="title">Evidence and reference</h2>
                 <span class="content">
                     <table class="table_blue">
                         <tr>
-                            <th>Code</th>
-                            <th>Title</th>
-                            <th>PDF</th>
+                            <th>#</th>
+                            <th>Evidence/Reference</th>
+                            <th>Category</th>
+                            <th>Sub-category</th>
+                            <th>Link</th>
                         </tr>
-                        {{#if studiesReference}}
-                            {{#each (parseJSON studiesReference)}}
+                        {{#if (or references referenceUrls)}}
+                            {{#each (parseJSON references)}}
                             <tr>
-                                <td width="10%">{{#safeEmpty}}{{this.code}}{{/safeEmpty}}</td>
-                                <td width="45%">{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
-                                <td width="45%" style="word-break: break-all;"><a href="{{#safeEmpty}}{{this.link}}{{/safeEmpty}}" target="_blank">{{#safeEmpty}}{{this.link}}{{/safeEmpty}}</a></td>
+                                <td>{{@index}}</td>
+                                <td>{{#safeEmpty}}{{this.reference}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.deliverableCategory}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.deliverableType}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.url}}{{/safeEmpty}}</td>
                             </tr>
-                            {{else}}
+                            {{/each}}
+                            {{#each (parseJSON referenceUrls)}}
                             <tr>
-                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
+                                <td>{{@index}}</td>
+                                <td>{{#safeEmpty}}{{this.reference}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.deliverableCategory}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.deliverableType}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.url}}{{/safeEmpty}}</td>
                             </tr>
                             {{/each}}
                         {{else}}
                             <tr>
-                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
+                                <td colspan="5" style="text-align: center; font-style: italic;">No information provided</td>
                             </tr>
                         {{/if}}
                     </table>
                 </span>
             </span>
-
-            <br>
-
-            <span class="section">
-                <h2 class="title">Quantification</h2>
-                <span class="content">
-                    <table class="table_blue">
-                        <tr>
-                            <th>Type</th>
-                            <th>Number</th>
-                            <th>Unit</th>
-                            <th>Comments</th>
-                        </tr>
-                        {{#if quantification}}
-                            {{#each (parseJSON quantification)}}
-                            <tr>
-                                <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.number}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.unit}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.comments}}{{/safeEmpty}}</td>
-                            </tr>
-                            {{else}}
-                            <tr>
-                                <td colspan="4" style="text-align: center; font-style: italic;">No information provided</td>
-                            </tr>
-                            {{/each}}
-                        {{else}}
-                            <tr>
-                                <td colspan="4" style="text-align: center; font-style: italic;">No information provided</td>
-                            </tr>
-                        {{/if}}
-                    </table>
-                </span>
-            </span>
-
-            <br>
-
-            <span class="section">
-                <h2 class="title">Communications</h2>
-                <h2 class="subtitle">Communications materials relating to this outcome: </h2>
-                <span class="content">
-                    {{#if links}}
-                        <ul>
-                            {{#each (parseJSON links)}}
-                            <li><a href="{{this}}" target="_blank">{{this}}</a></li>
-                            {{else}}
-                            <li>Not provided</li>
-                            {{/each}}
-                        </ul>
-                    {{else}}
-                    Not provided
-                    {{/if}}
-                </span>
-                <h2 class="subtitle">Acknowledgments:</h2>
-                <span class="content">
-                    <table class="table_blue">
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Affiliation</th>
-                        </tr>
-                        {{#if publications}}
-                            {{#each (parseJSON publications)}}
-                            <tr>
-                                <td>{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.position}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{this.affiliation}}{{/safeEmpty}}</td>
-                            </tr>
-                            {{else}}
-                            <tr>
-                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
-                            </tr>
-                            {{/each}}
-                        {{else}}
-                            <tr>
-                                <td colspan="3" style="text-align: center; font-style: italic;">No information provided</td>
-                            </tr>
-                        {{/if}}
-                    </table>
-                </span>
-            </span>
-
-            <br>
-
-        </span> --}}
-
-{{!--         <span class="page">
-
-            <span class="section">
-                <h1 class="mainTitle">SECTION 4: Alignment with other initiatives</h1>
-                <h2 class="title">Cross-cutting markers</h2>
-                <span class="content">
-                    <table class="table_transparent">
-                        <tr>
-                            <td style="text-align: center;" width="25%">
-                                <img
-                                width='65px'
-                                height='65px'
-                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Gender-score.png'
-                                alt='Gender Score'
-                                />
-                            </td>
-                            <td style="text-align: center;" width="25%">
-                                <img
-                                width='65px'
-                                height='65px'
-                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Youth-score.png'
-                                alt='Youth Score'
-                                />
-                            </td>
-                            <td style="text-align: center;" width="25%">
-                                <img
-                                width='65px'
-                                height='65px'
-                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/CapDev-score.png'
-                                alt='CapDev Score'
-                                />
-                            </td>
-                            <td style="text-align: center;" width="25%">
-                                <img
-                                width='65px'
-                                height='65px'
-                                src='https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Climate-score.png'
-                                alt='Climate Score'
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style='text-align: center; font-size: 11px;' width="25%"><b>{{#safeEmpty
-                                }}{{genderRelevance}}{{/safeEmpty}}</b></td>
-                            <td style='text-align: center; font-size: 11px;' width="25%"><b>{{#safeEmpty
-                                }}{{youthRelevance}}{{/safeEmpty}}</b></td>
-                            <td style='text-align: center; font-size: 11px;' width="25%"><b>{{#safeEmpty
-                                }}{{capacityRelevance}}{{/safeEmpty}}</b></td>
-                            <td style='text-align: center; font-size: 11px;' width="25%"><b>{{#safeEmpty
-                                }}{{climateRelevance}}{{/safeEmpty}}</b></td>
-                        </tr>
-                    </table>
-
-                    <p style='font-size: 7px; margin-top: 16px;'>
-                        0 = Not targeted: The result did not target any of the Impact Area objectives.
-                        <br />
-                        1 = Significant: The result has made a significant contribution to any of the Impact
-                        Area objectives, even though the objective(s) is not the principal focus of the
-                        result.
-                        <br />
-                        2 = Principal: The result is principally about meeting any of the Impact Area
-                        objectives, and this is fundamental in its design and expected results. The result
-                        would not have been undertaken without this objective.
-                    </p>
-                </span>
-
-                <br>
-
-                <h2 class="subtitle">Other cross-cutting dimensions</h2>
-                <span class="content">
-                    <p><b>{{otherCrossCuttingSelection}}</b></p>
-                    {{#ifEquals otherCrossCuttingSelection 'Yes'}}
-                    <p>{{otherCrossCuttingDimensions}}</p>
-                    {{else}}
-                    Not Required, Other cross-cutting dimensions
-                    {{/ifEquals}}
-                </span>
-            </span>
-
-            <br>
-
-            <span class="section">
-                {{#ifEquals isAllianceContribution 'Yes'}}
-                    <h2 class="title">Alliance alignment</h2>
-                    <h2 class="subtitle">Link to levers and strategic lever outcomes: </h2>
-                    <span class="content">
-                        {{#if primaryAllianceLever}}
-                            {{#with (parseJSON primaryAllianceLever)}}
-                            <ul>
-                                <li><b>Primary - </b>{{this.name}}
-                                    {{#if this.strategicOutcome}}
-                                        <ul>
-                                            <li><b>Strategic Lever Outcomes:</b></li>
-                                            {{#each this.strategicOutcome}}
-                                            <li>{{this}}</li>
-                                            {{/each}}
-                                        </ul>
-
-                                    {{else}}
-                                        Not provided
-                                    {{/if}}
-                                </li>
-                            {{/with}}
-                                {{#if relatedLever}}
-                                    {{#each (parseJSON relatedLever)}}
-                                    <li>{{this}}</li>
-                                    {{else}}
-                                    Not provided
-                                    {{/each}}
-                                {{/if}}
-                            </ul>
-                        {{else}}
-                            Not provided
-                        {{/if}}
-                    </span>
-                    <h2 class="subtitle">Contribution to SDG:</h2>
-                    <span class="content">
-                        <table class="table_transparent">
-                            <tr>
-                                <!-- Add condition to show sdg image if not, not show td tag -->
-                                {{#if primaryAllianceLever}}
-                                    {{#with (parseJSON primaryAllianceLever)}}
-                                        <td width="15%">
-                                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/sdg/E-WEB-Goal-{{this.code}}.png" width="71.04px" />
-                                        </td>
-                                    {{/with}}
-                                {{else}}
-                                    <td width="0%"></td>
-                                {{/if}}
-                                <td width="85%">
-                                    {{#if (or primarySDGcontribution relatedSDGContribution)}}                                     
-                                        <ul>
-                                            {{#each (parseJSON primarySDGcontribution)}}
-                                            <li>{{this}}</li>
-                                            {{/each}}
-                                            {{#each (parseJSON relatedSDGContribution)}}
-                                            <li>{{this}}</li>
-                                            {{/each}}
-                                        </ul>
-                                    {{else}}
-                                        Not provided
-                                    {{/if}}
-                                </td>
-                            </tr>
-                        </table>
-                    </span>
-                {{else}}
-                {{/ifEquals}}
-            </span>
-
-            <br>
-
-        </span> --}}
-        
+        </span>
     </div>
 
     <div id="pageFooter">

@@ -20,5 +20,13 @@
     "centers" : "[{\"headquarter\":\"Eastern Africa / Kenya\",\"name\":\"AICCRA Theme 1 ILRI\",\"type\":\"CGIAR Center\"},{\"name\":\"AICCRA MT ALLIANCE\",\"type\":\"CGIAR Center\"}]",
     "institutions" : "[{\"headquarter\":\"Eastern Africa / Kenya\",\"name\":\"AICCRA Theme 1 ILRI\",\"type\":\"CGIAR Center\"},{\"name\":\"AICCRA MT ALLIANCE\",\"type\":\"CGIAR Center\"}]",
     "performanceIndicator" : "[\"(2024-2025) IPI 3.4: Policy and investment decisions influenced by engagement and information dissemination by AICCRA funded partnerships and capacity building activities (Number)\",\"(2024-2025) PDO Indicator 1: Partners and stakeholders in the Project area increasingly accessing enhanced climate information services and/or validated climate-smart agriculture indicators (Numbers)​\"]",
-    "sharedInnovations" : "[]"
+    "sharedInnovations" : "[]",
+    "actors" : "[{ \"type\" : \"Farmers/(agro)pastoralist/heders/fishers\",\"sexAgeNotApply\": \"Yes\",\"womenYouth\" : null,\"womenNotYouth\" : null,\"menYouth\" : null,\"menNotYouth\" : null,\"nonbinaryYouth\" : null,\"nonbinaryNotYouth\" : null},{\"type\" : \"Policy actors (public or private)\",\"sexAgeNotApply\": \"No\",\"womenYouth\" : \"Yes\",\"womenNotYouth\" : \"Yes\",\"menYouth\" : \"No\",\"menNotYouth\" : \"No\",\"nonbinaryYouth\" : \"Yes\",\"nonbinaryNotYouth\" : \"Yes\"}]",
+    "allianceOrganizations" : "[{\"type\" : \"Farmers/(agro)pastoralist/heders/fishers\",\"name\" : \"FARMERS INC\"}]",
+    "beneficiariesNarrative" : "Droughts have become more frequent and severe across East Africa, exacerbating food insecurity, water scarcity, and economic instability. To address these challenges, robust drought monitoring and early warning systems must be developed, as well as anticipatory actions that can mitigate the impact of droughts before they occur. ICPAC, in collaboration with AICCRA and national governments are supporting the development of a National Drought Watch System across EA, to provide real-time data and analysis on drought conditions and",
+    "readinessScale" : 7,
+    "knowledgeMethodsAndToolsNarrative" : "NA",
+    "knowledgeResultsNarrative" : "NA",
+    "references" : "[{\"url\": \"https://www.google.com\",\"reference\": \"Google\",\"deliverableCategory\" : \"Data,models and tools\",\"deliverableType\" : \"Tool\"}]",
+    "referenceUrls" : "[{\"url\": \"https://www.google.com\",\"reference\": \"Google\",\"deliverableCategory\" : \"Data,models and tools\",\"deliverableType\" : \"Tool\"}]"
 }
