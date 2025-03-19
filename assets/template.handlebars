@@ -19,12 +19,6 @@
         color: #333;
         font-weight: bold;
     }
-
-    hr {
-        width: 100%;
-        border: 0;
-        border-top: 2px solid #57A7B5;
-    }
     
     #pageHeader{
         margin: 0;
@@ -388,7 +382,7 @@
                     <table class="table_transparent">
                         <tr>
                             <td width="20%">
-                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Africa.png" width="96px" />
+                                <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/Africa.png" width="73.92px" height="78.72px" />
                             </td>
                             <td width="80%">
                                 <span class="field">
@@ -759,6 +753,8 @@
                                 {{#if relatedLever}}
                                     {{#each (parseJSON relatedLever)}}
                                     <li>{{this}}</li>
+                                    {{else}}
+                                    Not provided
                                     {{/each}}
                                 {{/if}}
                             </ul>
@@ -773,14 +769,14 @@
                                 <!-- Add condition to show sdg image if not, not show td tag -->
                                 {{#if primaryAllianceLever}}
                                     {{#with (parseJSON primaryAllianceLever)}}
-                                        <td width="20%">
-                                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/sdg/E-WEB-Goal-{{this.code}}.png" width="128px" />
+                                        <td width="15%">
+                                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/sdg/E-WEB-Goal-{{this.code}}.png" width="71.04px" />
                                         </td>
                                     {{/with}}
                                 {{else}}
                                     <td width="0%"></td>
                                 {{/if}}
-                                <td width="80%">
+                                <td width="85%">
                                     {{#if (or primarySDGcontribution relatedSDGContribution)}}                                     
                                         <ul>
                                             {{#each (parseJSON primarySDGcontribution)}}
@@ -822,16 +818,17 @@
     </div>
 
     <div id="pageHeader-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="534" height="116" viewBox="0 0 534 116" fill="none" style="position: absolute; top: 0; left: 0; z-index: -1;">
-            <path d="M0.105347 0.052002H533.843C489.398 72.2692 468.504 109.308 418.843 115.052H0.105347V0.052002Z" fill="#15999A"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="378" height="80" viewBox="0 0 378 80" fill="none" style="position: absolute; top: 0; left: 0; z-index: -1;">
+            <path d="M0.19165 0.26123L378 0C346.22 49.9966 331.524 74 299.597 79.8767H0.19165V0.26123Z" fill="#15999A"/>
         </svg>
+
         <table class="header" style="height: 100%;">
             <tr>
-                <td width="50%" style="padding-left: 5rem; text-align: left; vertical-align: top; padding-top: 48px;">
-                    <h3 style="color: white;">{{#safeEmpty}}{{type}}{{/safeEmpty}}</h3>
+                <td width="50%" style="padding-left: 4rem; text-align: left; vertical-align: top; padding-top: 32px;">
+                    <h3 style="color: white; width: 80%">{{#safeEmpty}}{{type}}{{/safeEmpty}}</h3>
                 </td>
-                <td width="50%" style="padding-right: 5rem; text-align: right; vertical-align: middle; padding-top: 16px;" class="header-logo">
-                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="AICCRA Logo" width="56%" />
+                <td width="50%" style="padding-right: 5rem; text-align: right; vertical-align: middle; padding-top: 8px;" class="header-logo">
+                    <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="AICCRA Logo" width="50%" />
                 </td>
             </tr>
         </table>
@@ -840,7 +837,7 @@
         <table style="height:100%; width:100%;" class="opacity-50">
             <tr>
                 <td style="text-align: center; vertical-align: middle;">
-                    <span style="padding-left: 10rem; padding-right: 10rem; text-align:center; color: #333; font-weight: 300; font-size: 11px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
+                    <span style="padding-left: 5rem; padding-right: 5rem; text-align:left; color: #333; font-weight: 300; font-size: 11px; display: block;">This report was generated on {{timeCreation}} CET. Please note that the contents of this report may change in the future as it is dependent on the data entered into the MARLO AICCRA System</span>
                 </td>
             </tr>
         </table>
