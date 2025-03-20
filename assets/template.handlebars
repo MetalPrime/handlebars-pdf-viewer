@@ -120,13 +120,13 @@
     span.section>.mainTitle{
         font-size: 14px;
         font-weight: bold;
-        color: #F39619;
+        color: #0C9999;
     }
 
     span.section>.title {
         font-size: 14px;
         font-weight: bold;
-        color: #0C9999;
+        color: #34752D;
     }
 
     span.section>.subtitle{
@@ -346,9 +346,9 @@
             <br>
 
             <span class="section">
-                {{#ifEquals hasCgiarContribution 'Yes'}}
-                    <h2 class="title">Impact Area contribution </h2>
+                <h2 class="title">Impact Area contribution </h2>
 
+                {{#ifEquals hasCgiarContribution 'Yes'}}
                     <span class="content">
                         <table class="table_transparent">
                             <tr>
@@ -415,6 +415,10 @@
                                 <td>{{this.name}}</td>
                                 <td>{{this.type}}</td>
                             </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; font-style: italic;">Not information provided</td>
+                            </tr>
                             {{/each}}
                         {{else}}
                             <tr>
@@ -437,6 +441,10 @@
                             <tr>
                                 <td>{{this.name}}</td>
                                 <td>{{this.type}}</td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; font-style: italic;">Not information provided</td>
                             </tr>
                             {{/each}}
                         {{else}}
@@ -561,7 +569,7 @@
         <span class="page">
             <table>
                 <tr>
-                    <td style='width: 350px; vertical-align: top;'>
+                    <td style='width: 70%; vertical-align: top;'>
                         <span class='section'>
                             {{#if knowledgeMethodsAndToolsNarrative}}
                                 <h3 class="subtitle">Methods and tools that were developed to support the outreach and the use of this reported innovation</h3>
@@ -581,31 +589,35 @@
 
                     </td>
 
-                    <td style='vertical-align: top; text-align: center;'>
+                    <td style='width:30%; vertical-align: top;  text-align: center;'>
+                        {{#if readinessScale}}
+                            <div style="margin-top: -95px;">
+                                <img 
+                                width='100%' 
+                                src="https://prms-file-storage.s3.amazonaws.com/images/inno-scaling-readiness-{{readinessScale}}.png" 
+                                alt='Logo' 
+                                 />
+                            </div>
+                        {{else}}
+                            <div style="margin-top: -95px;">
+                                <img
+                                width='100%'
+                                src='https://prms-file-storage.s3.amazonaws.com/images/inno-scaling-readiness-not-provided.png'
+                                alt='Logo'
+                            href='https://www.scalingreadiness.org'
+                            </div>
+                        {{/if}}
 
-                    {{#if readinessScale}}
-                        <img 
-                        width='80%' 
-                        src="https://prms-file-storage.s3.amazonaws.com/images/inno-scaling-readiness-{{readinessScale}}.png" 
-                        alt='Logo' />
-                    {{else}}
-                        <img
-                        width='80%'
-                        src='https://prms-file-storage.s3.amazonaws.com/images/inno-scaling-readiness-not-provided.png'
-                        alt='Logo'
-                        />
-                    {{/if}}
-
-                    <br />
-                    <span style='font-size: 10px;'>
-                        Learn more in
-                        <a
-                        href='www.scalingreadiness.org'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        class='link'
-                        >www.scalingreadiness.org</a>
-                    </span>
+                        <br />
+                        <span style='font-size: 10px;'>
+                            Learn more in
+                            <a
+                            href='https://www.scalingreadiness.org'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            class='link'
+                            >www.scalingreadiness.org</a>
+                        </span>
                     </td>
                 </tr>
             </table>
@@ -635,7 +647,10 @@
                             {{/each}}
                             {{#each (parseJSON referenceUrls)}}
                             <tr>
-                                <td>{{@index}}</td>
+
+                                {{#with (parseJSON ../references) as |parsedReferences|}}
+                                    <td>{{math @index "+" parsedReferences.length}}</td>
+                                {{/with}}                                
                                 <td>{{#safeEmpty}}{{this.reference}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.deliverableCategory}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.deliverableType}}{{/safeEmpty}}</td>
