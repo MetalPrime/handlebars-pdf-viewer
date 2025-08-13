@@ -546,41 +546,35 @@
                     <table class="table_blue">
                         <tr>
                             <th width="5%">#</th>
-                            <th width="30%" style="word-break: break-all; overflow-wrap: break-word; word-wrap: break-word; hyphens: auto;">Type</th>
-                            <th colspan="2">Women</th>
-                            <th colspan="2">Men</th>
+                            <th width="30%" style="word-break: break-all; overflow-wrap: break-word; word-wrap: break-word;">Type</th>
+                            <th width="20%">Total</th>
+                            <th width="22.5%">Of which women</th>
+                            <th width="22.5%">Of which youth</th>
                         </tr>
                         {{#if actors}}
                             {{#each (parseJSON actors)}}
-                            <tr>
-                                <td rowspan="2" width="5%">{{mathOperator @index "+" 1 ""}}</td>
-                                <td rowspan="2" width="30%;" style=" word-break: break-all; overflow-wrap: break-word; word-wrap: break-word; hyphens: auto;">{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
-                                <td>Youth</td>
-                                <td>Non-youth</td>
-                                <td>Youth</td>
-                                <td>Non-youth</td>
-                            </tr>
-                            {{#ifEquals this.sexAgeNotApply 'Yes'}}
-                                <tr>
-                                    <td colspan="2">Not applicable</td>
-                                    <td colspan="2">Not applicable</td>
-                                </tr>
-                            {{else}}
-                                <tr>
-                                    <td>
-                                        {{#safeEmpty}}{{this.womenYouth}}{{/safeEmpty}} - {{#if this.womenYouthNumber}} {{#safeEmpty}}{{this.womenYouthNumber}}{{/safeEmpty}} {{else}} 0 {{/if}}
-                                    </td>
-                                    <td>
-                                        {{#safeEmpty}}{{this.womenNotYouth}}{{/safeEmpty}} - {{#if this.womenNotYouthNumber}} {{#safeEmpty}}{{this.womenNotYouthNumber}}{{/safeEmpty}} {{else}} 0 {{/if}}
-                                    </td>
-                                    <td>
-                                        {{#safeEmpty}}{{this.menYouth}}{{/safeEmpty}} - {{#if this.menYouthNumber}} {{#safeEmpty}}{{this.menYouthNumber}}{{/safeEmpty}} {{else}} 0 {{/if}}
-                                    </td>
-                                    <td>
-                                        {{#safeEmpty}}{{this.menNotYouth}}{{/safeEmpty}} - {{#if this.menNotYouthNumber}} {{#safeEmpty}}{{this.menNotYouthNumber}}{{/safeEmpty}} {{else}} 0 {{/if}}
-                                    </td>
-                                </tr>
-                            {{/ifEquals}}
+                                {{#ifEquals this.sexAgeNotApply 'Yes'}}
+                                    <tr>
+                                        <td width="5%">{{mathOperator @index "+" 1 ""}}</td>
+                                        <td width="30%;"
+                                            style=" word-break: break-all; overflow-wrap: break-word; word-wrap: break-word;">
+                                            {{#safeEmpty}}{{this.type}}{{/safeEmpty}}
+                                        </td>
+                                        <td width="20%">{{#safeEmpty}}{{this.total}}{{/safeEmpty}}</td>
+                                        <td width="22.5%">Not applicable</td>
+                                        <td width="22.5%">Not applicable</td>
+                                    </tr>
+                                {{else}}
+                                    <tr>
+                                        <td width="5%">{{mathOperator @index "+" 1 ""}}</td>
+                                        <td width="30%;"
+                                            style=" word-break: break-all; overflow-wrap: break-word; word-wrap: break-word;">
+                                            {{#safeEmpty}}{{this.type}}{{/safeEmpty}}
+                                        </td>
+                                        <td width="20%">{{#safeEmpty}}{{this.total}}{{/safeEmpty}}</td>
+                                        <td width="22.5%">{{#safeEmpty}}{{this.womenYouthNumber}}{{/safeEmpty}}</td>
+                                        <td width="22.5%">{{#safeEmpty}}{{this.womenNotYouthNumber}}{{/safeEmpty}}</td>
+                                {{/ifEquals}}
                             {{else}}
                             <tr>
                                 <td colspan="6" style="text-align: center; font-style: italic;">Not provided</td>
@@ -599,16 +593,14 @@
                         <tr>
                             <th style="5%">#</th>
                             <th style="15%">Type</th>
-                            <th style="65%">Name</th>
-                            <th style="15%">How many</th>
+                            <th style="80%">Name</th>
                         </tr>
                         {{#if allianceOrganizations}}
                             {{#each (parseJSON allianceOrganizations)}}
                             <tr>
                                 <td style="5%">{{mathOperator @index "+" 1 ""}}</td>
-                                <td style="20%">{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
-                                <td style="60%">{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
-                                <td style="15%">{{#safeEmpty}}{{this.howMany}}{{/safeEmpty}}</td>
+                                <td style="15%">{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
+                                <td style="80%">{{#safeEmpty}}{{this.name}}{{/safeEmpty}}</td>
                             </tr>
                             {{else}}
                             <tr>
