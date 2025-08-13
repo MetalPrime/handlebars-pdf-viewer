@@ -227,6 +227,10 @@
         color: white; 
     }
 
+    .table_blue td ul{
+        padding-left: 12px;
+    }
+
     .opacity-50 {
         fill-opacity: 0.5;
     }
@@ -536,7 +540,73 @@
             </span>
 
         </span>
-        
+
+        <span class="page" style="page-break-after: always;">
+            <span class="section">
+                <h1 class="mainTitle">SECTION: Bundle composition</h1>
+                <h2 class="title">Incorporated innovations</h2>
+                <span class="content">
+                    <table class="table_blue">
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="55%">Name</th>
+                            <th width="13.3%">Type</th>
+                            <th width="13.3%">Readiness Level</th>
+                            <th width="13.3%">Link</th>
+                        </tr>
+                        {{#if innovationBundle}}
+                            {{#each (parseJSON innovationBundle)}}
+                            <tr>
+                                <td>{{#safeEmpty}}{{this.id}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.projectType}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{mathOperator this.projectReadinessLevel "-" 1 ""}}{{/safeEmpty}}</td>
+                                <td><a href="{{this.url}}" target="_blank">View more information</a></td>
+                            </tr>
+                            {{/each}}
+                        {{else}}
+                        <tr>
+                            <td colspan="5" style="text-align: center; font-style: italic;">Not provided</td>
+                        </tr>
+                        {{/if}}
+                    </table>
+                </span>
+            </span>
+            <span class="section">
+                <h2 class="title">Complementary innovations</h2>
+                <span class="content">
+                    <table class="table_blue">
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="50%">Name</th>
+                            <th width="15%">Type</th>
+                            <th width="30%">Functions</th>
+                        </tr>
+                        {{#if complementarySolutions}}
+                            {{#each (parseJSON complementarySolutions)}}
+                                <tr>
+                                    <td>{{mathOperator @index "+" 1 ""}}</td>
+                                    <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
+                                    <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
+                                    <td>
+                                        <ul>
+                                            {{#each this.functions}}
+                                                <li>{{this}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="4" style="text-align: center; font-style: italic;">Not provided</td>
+                            </tr>
+                        {{/if}}
+                    </table>
+                </span>
+            </span>
+        </span>
+
         <span class="page" style="page-break-after: always;">
             <span class="section">
                 <h1 class="mainTitle">SECTION: knowledge sharing and Scaling potential</h1>
@@ -805,20 +875,6 @@
 
     <div id="pageHeader-1">
         <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/header-innovation.png" class="img-background img-background-top opacity-50" width="100%" />
-        {{!--         <svg xmlns="http://www.w3.org/2000/svg" width="378" height="80" viewBox="0 0 378 80" fill="none" style="position: absolute; top: 0; left: 0; z-index: -1;">
-                    <path d="M0.19165 0.26123L378 0C346.22 49.9966 331.524 74 299.597 79.8767H0.19165V0.26123Z" fill="#15999A"/>
-                </svg>
-
-                <table class="header" style="height: 100%;">
-                    <tr>
-                        <td width="50%" style="padding-left: 4rem; text-align: left; vertical-align: top; padding-top: 32px;">
-                            <h3 style="color: white; width: 80%">{{#safeEmpty}}{{type}}{{/safeEmpty}}</h3>
-                        </td>
-                        <td width="50%" style="padding-right: 5rem; text-align: right; vertical-align: middle; padding-top: 8px;" class="header-logo">
-                            <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/AICCRA-logo.png" alt="AICCRA Logo" width="50%" />
-                        </td>
-                    </tr>
-                </table> --}}
     </div>
     <div id="pageFooter-1">
         <table style="height:100%; width:100%;" class="opacity-50">
@@ -829,7 +885,5 @@
             </tr>
         </table>
     </div>
-
 </body>
-
 </html>
