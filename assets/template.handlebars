@@ -314,8 +314,7 @@
                     <br>
                     <table class="table_transparent">
                         <tr>
-                            <td width="20%"></td>
-                            <td width="12.5%">
+                            <td width="10%">
                                 <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+nature.png" width="48px" />
                             </td>
                             <td width="17.5%">
@@ -324,16 +323,16 @@
                                     <span style="font-size: 8px;">{{#safeEmpty}}{{repIndInnovationNature}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
-                            <td width="12.5%">
+                            <td width="10%">
                                 <img src="https://marlo-pdf-resources-dev.s3.us-east-1.amazonaws.com/innovations/Inno+type.png" width="48px" />
                             </td>
-                            <td width="17.5%">
+                            <td width="47.5%">
                                 <span class="field">
                                     <span class="name subtitle" style="color: #BF8F00;">Type </span>
-                                    <span style="font-size: 8px;">{{#safeEmpty}}{{repIndInnovationType}}{{/safeEmpty}}</span>
+                                    <span style="font-size: 8px; display: block;">{{#safeEmpty}}{{repIndInnovationType}}{{/safeEmpty}}</span>
+                                    <span style="font-size: 6px;">{{#safeEmpty}}{{repIndInnovationTypePRMS}}{{/safeEmpty}}</span>
                                 </span>
                             </td>
-                            <td width="20%"></td>
                         </tr>
                     </table>
                     <br>    
@@ -541,7 +540,7 @@
 
         </span>
 
-        <span class="page" style="page-break-after: always;">
+        <span class="page">
             <span class="section">
                 <h1 class="mainTitle">SECTION: Bundle composition</h1>
                 <h2 class="title">Incorporated innovations</h2>
@@ -560,7 +559,7 @@
                                 <td>{{#safeEmpty}}{{this.id}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
                                 <td>{{#safeEmpty}}{{this.projectType}}{{/safeEmpty}}</td>
-                                <td>{{#safeEmpty}}{{mathOperator this.projectReadinessLevel "-" 1 ""}}{{/safeEmpty}}</td>
+                                <td>{{#safeEmpty}}{{this.projectReadinessLevel}}{{/safeEmpty}}</td>
                                 <td><a href="{{this.url}}" target="_blank">View more information</a></td>
                             </tr>
                             {{/each}}
@@ -578,9 +577,9 @@
                     <table class="table_blue">
                         <tr>
                             <th width="5%">#</th>
-                            <th width="50%">Name</th>
+                            <th width="40%">Name</th>
                             <th width="15%">Type</th>
-                            <th width="30%">Functions</th>
+                            <th width="40%">Functions</th>
                         </tr>
                         {{#if complementarySolutions}}
                             {{#each (parseJSON complementarySolutions)}}
@@ -589,11 +588,15 @@
                                     <td>{{#safeEmpty}}{{this.title}}{{/safeEmpty}}</td>
                                     <td>{{#safeEmpty}}{{this.type}}{{/safeEmpty}}</td>
                                     <td>
-                                        <ul>
-                                            {{#each this.functions}}
-                                                <li>{{this}}</li>
-                                            {{/each}}
-                                        </ul>
+                                        {{#if this.functions}}
+                                            <ul>
+                                                {{#each this.functions}}
+                                                    <li>{{this}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        {{else}}
+                                            <span style="font-style: italic;">Not provided</span>
+                                        {{/if}}
                                     </td>
                                 </tr>
                             {{/each}}
