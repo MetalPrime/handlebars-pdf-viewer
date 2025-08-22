@@ -547,7 +547,7 @@
                 <span class="content">
                     <table class="table_blue">
                         <tr>
-                            <th width="5%">#</th>
+                            <th width="5%">ID</th>
                             <th width="55%">Name</th>
                             <th width="13.3%">Type</th>
                             <th width="13.3%">Readiness Level</th>
@@ -571,6 +571,7 @@
                     </table>
                 </span>
             </span>
+            {{#if complementarySolutions}}
             <span class="section">
                 <h2 class="title">Complementary innovations</h2>
                 <span class="content">
@@ -581,7 +582,6 @@
                             <th width="15%">Type</th>
                             <th width="40%">Functions</th>
                         </tr>
-                        {{#if complementarySolutions}}
                             {{#each (parseJSON complementarySolutions)}}
                                 <tr>
                                     <td>{{mathOperator @index "+" 1 ""}}</td>
@@ -600,14 +600,11 @@
                                     </td>
                                 </tr>
                             {{/each}}
-                        {{else}}
-                            <tr>
-                                <td colspan="4" style="text-align: center; font-style: italic;">Not provided</td>
-                            </tr>
-                        {{/if}}
                     </table>
                 </span>
             </span>
+            {{else}}
+            {{/if}}
         </span>
 
         <span class="page" style="page-break-after: always;">
